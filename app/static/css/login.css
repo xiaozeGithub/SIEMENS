@@ -1,0 +1,63 @@
+.wrap{
+    background:orange;
+    height: 100%;
+    width: 100%;
+    font-family: '微软雅黑'
+}
+.logo{
+    height: 80px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    line-height: 80px;
+    text-align: center;
+}
+
+.titleContainer{
+    margin-top: 10px; 
+}
+.title{
+    height: 80px;
+    font-size: 28px;
+    font-weight: 200;
+    color: white;
+    line-height: 80px;
+    text-align: center;
+}
+.formContainer{
+    height: 326px;
+    background: rgba(255,255,255,.8);
+    /* opacity: .9; */
+    border-radius:  8px; 
+    padding: 50px 60px;
+    
+    padding-bottom: 20px
+}
+.ant-input-affix-wrapper .ant-input:not(:first-child){
+    background: #fff;
+    border: none;
+    height: 48px;   
+    font-size: 14px;
+    padding-left: 34px !important;
+    box-shadow: 1px 3px 4px #c1ccce;
+}
+.ant-form-item{
+    margin-bottom: 3px !important; 
+}
+.loginSubmit{
+    width: 100%;
+    height: 48px;
+    border-radius: 24px;
+    background: #02c0c0;
+
+    font-size: 14px;
+    color: #fff;
+    line-height: 48px;
+    text-align: center;
+    transition: all .3s;
+    cursor: pointer;
+    box-shadow: 1px 3px 4px #c1ccce;
+}   
+.loginSubmit:hover{
+    background: #0fb9b6;
+}

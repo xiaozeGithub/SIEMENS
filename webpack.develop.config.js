@@ -1,13 +1,19 @@
-var path = require('path')
-var OpenBrowserPlugin = require('open-browser-webpack-plugin')
-
+const path = require('path')
+const OpenBrowserPlugin = require('open-browser-webpack-plugin')
+const Config = require('./config/config')
 // webpack2不支持自定义eslint属性,module不支持preLoaders属性 
 module.exports = {
 	entry: path.resolve(__dirname, 'app/index.jsx'),
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js'
-	},
+    },
+    // devServer: {
+    //     historyApiFallback: true,
+    //     noInfo: true,
+    //     port: Config.app_port,//访问端口
+    //     colors:true
+    // },
 	// eslint: {
 	// 	configFile:'.eslintrc.js'
 	// },
@@ -52,6 +58,6 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new OpenBrowserPlugin({url: 'http://localhost:8080/'})
+		new OpenBrowserPlugin({url: `http://localhost:${Config.app_port}/`})
 	]
 }

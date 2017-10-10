@@ -4,6 +4,7 @@
 html,body{
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 body::-webkit-scrollbar{width:0px}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,
@@ -95,5 +96,5 @@ a{
     -ms-flex-pack: justify;
     justify-content: space-between;
 }
-/* 隐藏滚动条 */
-body { margin-right: -15px; margin-bottom: -15px; }
+/*解决默认事件*/
+a,button,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}

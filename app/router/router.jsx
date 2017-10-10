@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Router, Route, Link, Redirect, hashHistory, browserHistory, IndexRoute } from 'react-router'
 
 import Login from '../containers/login/Login'
+import Home from '../containers/home/Home'
+import Totaily from '../containers/totaily/Totaily'
 
 
 
@@ -22,7 +24,9 @@ export default class Routers extends Component {
                         console.log('离开了登录页 我们去首页');
                     }}>
                 </Route>
-                
+                <Route path='/home' component={Home}>
+                    <IndexRoute component={Totaily} />
+                </Route>
             </Router>
         )
     }

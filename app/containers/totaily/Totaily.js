@@ -8,6 +8,8 @@ import { Row, Col } from 'antd';
 import SIETabs from '../../components/tabs/Tabs';
 // 用电排行
 import TopTen from '../totalityTopten/totalityTopten';
+// 用电监测与分析
+import Analyze from '../totalityAnalyze/totalityAnalyze';
 
 class Totaily extends React.Component {
     constructor(props, context) {
@@ -18,7 +20,7 @@ class Totaily extends React.Component {
                     title: '实时用电监测与分析',
                     index: '1',
                     url: '',
-                    content:'实时用电监测与分析'
+                    content:<Analyze/>
                 },
                 {
                     title: '月购售电计划',

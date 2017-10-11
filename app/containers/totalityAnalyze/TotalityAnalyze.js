@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { hashHistory } from 'react-router'
 import { Row, Col } from 'antd';
 
-
+import EchartBar from '../../components/echarts/EchartBar.js'
 
 
 
@@ -17,8 +17,8 @@ class Analyze extends React.Component {
 
     render() {
         return (
-            <div className=''>
-                监测与分析
+            <div style={{width:'100%',height:'100%'}}>
+               <EchartBar/>
             </div>
         )
     }

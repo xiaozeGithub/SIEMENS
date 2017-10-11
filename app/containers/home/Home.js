@@ -2,9 +2,10 @@ import React from 'react'
 import { Link } from 'react-router'
 import '../../static/css/home.css'
 
-import { Layout, Menu, Icon, Row, Col  } from 'antd'
+import { Layout, Menu, Icon, Row, Col, Input  } from 'antd'
 import Config from '../../../config/config'
 
+const Search = Input.Search;
 // 引入遮罩层
 
 const SubMenu = Menu.SubMenu
@@ -51,6 +52,7 @@ class Home extends React.Component {
                 </Header>
 
                 <Layout>
+                
                     <Sider
                         breakpoint="lg"
                         collapsedWidth="0"
@@ -58,14 +60,18 @@ class Home extends React.Component {
                         width='200'
                         style={{ background: '#4a515d', fontSize: '14px' }}
                     >
-
+                        <Search
+                            placeholder="input search text"
+                            style={{ width: 160,marginLeft:'20px',marginTop:'15px'  }}
+                            onSearch={value => console.log(value)}
+                        />
                         <Menu
                             mode="inline"
                             defaultSelectedKeys={['1']}
                             defaultOpenKeys={['sub1']}
                             style={{ height: '100%', borderRight: 0 }}
                         >
-                         
+                          
                             <Menu.Item key="sub1" ><span><Icon type="user" />总体用电</span></Menu.Item>
                             <SubMenu key="sub2" title={<span><Icon type="laptop" />我关注的用户</span>}>
                                 <Menu.Item key="5">option5</Menu.Item>
@@ -82,7 +88,7 @@ class Home extends React.Component {
                         </Menu>
                     </Sider>
                     <Layout>
-                        <Content style={{ padding: '30px', overflow: 'auto'}}>
+                        <Content style={{ padding: '8px 20px', overflow: 'auto',height: '100%'}}>
                             {this.props.children}
                         </Content>
                         <Footer className='footerSetting'>

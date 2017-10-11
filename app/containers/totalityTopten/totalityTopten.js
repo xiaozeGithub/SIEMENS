@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom'
 import { hashHistory } from 'react-router'
 import { Row, Col } from 'antd';
 
+import '../../static/css/total_topten.css'
+import Table from '../../components/table/table'
 
-
-
-
-class Analyze extends React.Component {
+class Topten extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
@@ -17,11 +16,11 @@ class Analyze extends React.Component {
 
     render() {
         return (
-            <div className=''>
-                监测与分析
+            <div className='toptenContainer'>
+                <Table/>
             </div>
         )
     }
 }
 
-module.exports = Analyze
+module.exports = Topten

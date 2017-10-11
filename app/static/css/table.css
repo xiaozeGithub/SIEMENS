@@ -1,0 +1,50 @@
+.topTenLogo{
+    width:24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #d8d8d8 ;
+    color: #fff;
+    display: inline-block
+}
+.topTenLogoFirst{
+    background: #fba07f ;
+}
+.topTenLogoSecond{
+    background: #f7e09e ;
+}
+.topTenLogoThird{
+    background: #35cbcc ;
+}
+
+.topHeader{
+    height: 40px;
+    display: flex;
+    margin: 15px 0;
+    align-items: center;
+    justify-content: space-between;
+}
+.topImg{
+    width: 28px;
+    height: 28px;
+}
+.topRace{
+    font-size: 16px;
+    color: #333;
+    margin-left: 8px;
+}
+
+.ant-radio-button-wrapper-checked {
+    background: #fff;
+    border-color: #019899;
+    color: #78c9c9;
+    box-shadow: -1px 0 0 0 #019899;
+    z-index: 1;
+}
+
+.ant-radio-button-wrapper-checked:first-child {
+    border-color: #019899;
+    box-shadow: none !important;
+}
+.searchInput>input:hover {
+    border: 1px solid #019899 !important;
+}

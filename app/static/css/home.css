@@ -11,11 +11,11 @@
     background: #019899;
     color: white;
     font: 16px '微软雅黑';
-    text-align: center;
     line-height: 48px;
     position: absolute;
     top: 0;
     z-index: 2;
+    padding-left: 24px;
 }
 .headerSetting{
     position: absolute;
@@ -74,4 +74,26 @@
 }
 .ant-menu-inline .ant-menu-item:after, .ant-menu-vertical .ant-menu-item:after {
     border-right: 3px solid #fff;
+}
+
+.ant-input {
+    position: relative;
+    display: inline-block;
+    padding: 4px 7px;
+    width: 100%;
+    height: 28px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #fff;
+    background: none;
+    background-image: none;
+    border: 1px solid #aeb2b7;
+    border-radius: 4px;
+    transition: all .3s;
+}
+.ant-input-affix-wrapper .ant-input-prefix, .ant-input-affix-wrapper .ant-input-suffix{
+    color: #aeb2b7
+}
+.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled){
+    border: 1px solid #fff;
 }

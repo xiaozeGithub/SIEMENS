@@ -5,8 +5,6 @@ import Login from '../containers/login/Login'
 import Home from '../containers/home/Home'
 import Totaily from '../containers/totaily/Totaily'
 
-
-
 export default class Routers extends Component {
     constructor(props, context) {
         super(props, context);
@@ -25,7 +23,9 @@ export default class Routers extends Component {
                     }}>
                 </Route>
                 <Route path='/home' component={Home}>
-                    <IndexRoute component={Totaily} />
+                    <IndexRoute component={Totaily} >
+                 
+                    </IndexRoute>
                 </Route>
             </Router>
         )

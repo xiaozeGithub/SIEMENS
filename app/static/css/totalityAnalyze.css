@@ -1,0 +1,16 @@
+.analyzeContainer{
+    display: flex;
+    flex: 1;
+    flex-direction: column;  
+    background: #f5f5f5
+}
+.analyzeHeader{
+    background: orange;
+    flex: 1;
+    
+}
+.analyzeContent{
+    margin-top: 10px;
+    background: pink;
+    flex: 4
+}

@@ -1,9 +1,12 @@
 import React from 'react'
 import { Form, Icon, Input, Button, Checkbox, Row, Col } from 'antd';
-
+import { hashHistory } from 'react-router'
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
+    constructor(props, context) {
+        super(props, context)
+    }
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -11,6 +14,10 @@ class NormalLoginForm extends React.Component {
                 console.log('Received values of form: ', values);
             }
         });
+    }
+    isSubmit = () => {
+        console.log(this.context);
+        this.context.router.push('/home');  
     }
     render() {
         const { getFieldDecorator } = this.props.form;
@@ -38,7 +45,7 @@ class NormalLoginForm extends React.Component {
                         <Checkbox>记住密码</Checkbox>
                         )}
 
-                    <div style={{ marginTop: '16px' }} className='loginSubmit'>登 录</div>
+                    <div  onClick={this.isSubmit} style={{ marginTop: '16px' }} className='loginSubmit'>登 录</div>
                     <Row style={{ marginTop: '6px' }}>
                         <Col span={8}> <a className="login-form-forgot" href="">忘记密码</a></Col>
                         <Col style={{textAlign: 'right'}} span={8} offset={8}>还没有账号？<a href="" style={{color: '#47a1ea'}}>注册</a></Col>

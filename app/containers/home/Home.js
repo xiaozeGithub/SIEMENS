@@ -72,7 +72,7 @@ class Home extends React.Component {
                             style={{ height: '100%', borderRight: 0 }}
                         >
                           
-                            <Menu.Item key="sub1" ><span><Icon type="user" />总体用电</span></Menu.Item>
+                            <Menu.Item key="sub1" ><Link style={{ display: 'block' }} to='/home'></Link><span><Icon type="user" />总体用电</span></Menu.Item>
                             <SubMenu key="sub2" title={<span><Icon type="laptop" />我关注的用户</span>}>
                                 <Menu.Item key="5">option5</Menu.Item>
                                 <Menu.Item key="6">option6</Menu.Item>
@@ -80,10 +80,7 @@ class Home extends React.Component {
                                 <Menu.Item key="8">option8</Menu.Item>
                             </SubMenu>
                             <SubMenu key="sub3" title={<span><Icon type="notification" />所有用户</span>}>
-                                <Menu.Item key="9">option9</Menu.Item>
-                                <Menu.Item key="10">option10</Menu.Item>
-                                <Menu.Item key="11">option11</Menu.Item>
-                                <Menu.Item key="12">option12</Menu.Item>
+                                <Menu.Item key="9"><Link style={{ display: 'block' }} to='/home/individual'></Link>用户1</Menu.Item>
                             </SubMenu>
                         </Menu>
                     </Sider>

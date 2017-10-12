@@ -4,6 +4,7 @@ import { Router, Route, Link, Redirect, hashHistory, browserHistory, IndexRoute 
 import Login from '../containers/login/Login'
 import Home from '../containers/home/Home'
 import Totaily from '../containers/totaily/Totaily'
+import Individual from '../containers/individual/Individual'
 
 export default class Routers extends Component {
     constructor(props, context) {
@@ -26,7 +27,8 @@ export default class Routers extends Component {
                     <IndexRoute component={Totaily} >
                  
                     </IndexRoute>
-                </Route>
+                    <Route path='individual' component={Individual}/>
+                    </Route>
             </Router>
         )
     }

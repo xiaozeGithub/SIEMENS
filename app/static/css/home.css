@@ -84,7 +84,7 @@
     height: 28px;
     font-size: 12px;
     line-height: 1.5;
-    color: #fff;
+    color: #666666;
     background: none;
     background-image: none;
     border: 1px solid #aeb2b7;
@@ -97,3 +97,4 @@
 .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled){
     border: 1px solid #fff;
 }
+

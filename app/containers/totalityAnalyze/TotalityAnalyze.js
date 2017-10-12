@@ -4,7 +4,7 @@ import { hashHistory } from 'react-router'
 import { Row, Col } from 'antd';
 
 import EchartBar from '../../components/echarts/EchartBar.js'
-
+import '../../static/css/totalityAnalyze.css'
 
 
 class Analyze extends React.Component {
@@ -17,11 +17,15 @@ class Analyze extends React.Component {
 
     render() {
         return (
-            <div style={{width:'100%',height:'100%'}}>
-               <EchartBar/>
+            <div style={{ height: '100%', width: '100%' ,display:'flex'}}>
+                <div className='analyzeContainer' >
+                    <div className='analyzeHeader'></div>
+                    <div className='analyzeContent'></div>
+                </div>
             </div>
+
         )
     }
 }
-
+// <EchartBar/>
 module.exports = Analyze

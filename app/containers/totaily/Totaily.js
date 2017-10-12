@@ -8,6 +8,8 @@ import { Row, Col } from 'antd';
 import SIETabs from '../../components/tabs/Tabs';
 // 用电排行
 import TopTen from '../totalityTopten/totalityTopten';
+// 月售电计划
+import Month from '../totalityMonth/TotalityMonth';
 // 用电监测与分析
 import Analyze from '../totalityAnalyze/totalityAnalyze';
 
@@ -26,7 +28,7 @@ class Totaily extends React.Component {
                     title: '月购售电计划',
                     index: '2',
                     url: '',
-                    content:'月购售电计划'
+                    content: <Month/>
                 },
                 {
                     title: '历史用电',

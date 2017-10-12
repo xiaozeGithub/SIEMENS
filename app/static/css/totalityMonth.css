@@ -1,0 +1,20 @@
+.monthTitle{
+    font-size: 16px;
+    color: #333;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.monthImg{
+    margin: 0 auto
+}
+.monthHint{
+    font-size: 18px;
+    text-align: center;
+    color: #333;
+}
+.monthHintContent{
+    font-size: 1px;
+    text-align: center;
+    color: #7d7d7d;
+    margin-top: 5px
+}

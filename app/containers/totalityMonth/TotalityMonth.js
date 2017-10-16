@@ -5,7 +5,7 @@ import { Row, Col } from 'antd';
 
 import EchartBar from '../../components/echarts/EchartBar.js'
 import '../../static/css/totalityMonth.css'
-
+import Hint from '../../components/hint/Hint'
 
 class Month extends React.Component {
     constructor(props, context) {
@@ -18,6 +18,7 @@ class Month extends React.Component {
     render() {
         return (
             <div style={{ height: '100%', width: '100%',paddingTop:'10px' }}>
+                <Hint/>
                 <div className='monthTitle'>总体月购售电计划</div>
                 <img className='monthImg' src='../../../static/images/public/month.png'></img>
                 <p className='monthHint'>预测结果未发布</p>

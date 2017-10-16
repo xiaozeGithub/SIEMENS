@@ -4,17 +4,23 @@
     border-radius: 50%;
     background: #d8d8d8 ;
     color: #fff;
-    display: inline-block
+    display: inline-block;
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
 }
-.topTenLogoFirst{
+.ant-table-row-level-0:nth-child(1) td .topTenLogo{
     background: #fba07f ;
 }
-.topTenLogoSecond{
+
+.ant-table-row-level-0:nth-child(2) td .topTenLogo{
     background: #f7e09e ;
 }
-.topTenLogoThird{
+.ant-table-row-level-0:nth-child(3       ) td .topTenLogo{
     background: #35cbcc ;
 }
+
+
 
 .topHeader{
     height: 40px;

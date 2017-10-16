@@ -43,7 +43,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 a{
     text-decoration:none;/*大部分页面中的链接没有下划线*/
-    color:#bcc0c4 !important;
 }
 .clearfix:after{
     height:0;
@@ -98,3 +97,14 @@ a{
 }
 /*解决默认事件*/
 a,button,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}
+.closeRevole{
+    cursor: pointer;
+    transition: all .5s;
+}
+.closeRevole:hover{
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg); 	/* IE 9 */
+    -moz-transform:rotate(45deg); 	/* Firefox */
+    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
+    -o-transform:rotate(45deg); 	/* Opera */
+}

@@ -15,6 +15,7 @@ class NormalLoginForm extends React.Component {
             }
         });
     }
+    static contextTypes = { router: React.PropTypes.object };
     isSubmit = () => {
         console.log(this.context);
         this.context.router.push('/home');  

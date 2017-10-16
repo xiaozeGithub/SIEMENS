@@ -1,0 +1,22 @@
+.selectTimeBtn{
+    width:100%;
+    height:28px;
+    font-size: 12px;
+    color: #fff;
+    line-height: 28px;
+    text-align: center;
+    transition: all .3s;
+    cursor: pointer; 
+    background: #0fb9b6;
+    border-radius: 5px;
+}
+.selectTimeBtn:hover{
+    background: #019899;
+}
+.selectTimeTo{
+    width: 100%;
+    height:28px;
+    line-height: 28px;
+    text-align: center;
+    overflow: hidden;
+}

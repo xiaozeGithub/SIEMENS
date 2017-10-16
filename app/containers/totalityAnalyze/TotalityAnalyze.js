@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom'
 import { hashHistory } from 'react-router'
 import { Row, Col } from 'antd';
 
-import EchartBar from '../../components/echarts/EchartBar.js'
+import EchartBar from '../../components/echarts/EchartBar'
+import ErrorUser from '../../components/echarts/Error'
+
 import '../../static/css/totalityAnalyze.css'
 
 
@@ -17,9 +19,18 @@ class Analyze extends React.Component {
 
     render() {
         return (
-            <div style={{ height: '100%', width: '100%' ,display:'flex'}}>
+            <div style={{ height: '100%', width: '100%', display: 'flex' }}>
+              
                 <div className='analyzeContainer' >
-                    <div className='analyzeHeader'></div>
+
+                    <Row className='analyzeHeader' type={'flex'} justify={'space-between'} >
+                        <Col style={{ width: '72%', height: '100%', background: 'red' }}>
+
+                        </Col>
+                        <Col style={{ width: '27%', height: '100%', background: '#fff' }}>
+                            <ErrorUser />
+                        </Col>
+                    </Row>
                     <div className='analyzeContent'></div>
                 </div>
             </div>

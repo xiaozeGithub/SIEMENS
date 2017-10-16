@@ -2,7 +2,9 @@
     background:orange;
     height: 100%;
     width: 100%;
-    font-family: '微软雅黑'
+    font-family: '微软雅黑';
+    background: url('../images/login/loginBg.png');
+    background-size: 100% 100%; 
 }
 .logo{
     height: 80px;
@@ -26,7 +28,7 @@
 }
 .formContainer{
     height: 326px;
-    background: rgba(255,255,255,.8);
+    background: rgba(255,255,255,.6);
     /* opacity: .9; */
     border-radius:  8px; 
     padding: 50px 60px;

@@ -8,49 +8,7 @@ const { Column, ColumnGroup } = Table;
 const Search = Input.Search;
 import '../../static/css/table.css'
 
-const data = [{
-    key: '1',
-    user: 'John Brown',
-    electric: '666°',
-    error: '15%',
-    address: 'New York No. 1 Lake Park',
-}, {
-    key: '2',
-    user: 'Jim Green',
-    electric: '200°',
-    error: '15%',
-    address: 'London No. 1 Lake Park',
-}, {
-    key: '3',
-    user: 'Joe Black',
-    electric: '300°',
-    error: '15%',
-    address: 'Sidney No. 1 Lake Park',
-}];
-const columns = [{
-    title: '排名',
-    dataIndex: 'top',
-    key: 'top',
-    render: text =>
-        <div className='topTenLogo'>{text}</div>
-}, {
-    title: '用户名',
-    dataIndex: 'user',
-    key: 'user',
-}, {
-    title: '用电量',
-    dataIndex: 'electric',
-    key: 'electric',
-}, {
-    title: '误差',
-    dataIndex: 'error',
-    key: 'error',
-}, {
-    title: '地理位置',
-    dataIndex: 'address',
-    key: 'address',
-}
-];
+
 
 
 
@@ -58,12 +16,51 @@ class TopTable extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            columns,
-            data
+            columns:this.props.columns,
+            data:this.props.data,
+            sortBack: this.props.sortBack,
+            size: 'large'
         }
+        
+        this.data = this.props.data
     }
-
-
+    componentDidMount(){
+        this.sortTop('error',false);
+    }
+    sortTop(option, directionSort) {
+        let sortArr = [];
+        if (directionSort) {
+            sortArr = this.state.data.sort(function (x, y) {
+                var value1 = parseInt(x[option]);
+                var value2 = parseInt(y[option]);
+                return value1 - value2;
+            })
+            console.log(sortArr);
+        } else {
+            sortArr = this.state.data.sort(function (x, y) {
+                var value1 = parseInt(x[option]);
+                var value2 = parseInt(y[option]);
+                return value2 - value1;
+            })
+        }
+        console.log(sortArr)
+        this.setState({
+            data: sortArr
+        })
+    }
+    searchKeyWord(word) {
+        let keyWord = word.toUpperCase();
+        let filterName = this.data.filter((item) => {
+            return item['user'].toUpperCase().indexOf(keyWord) !== -1
+        });
+        console.log(filterName);
+        this.setState({
+            data: filterName
+        })
+    }
+    handleSizeChange = (e) => {
+        this.setState({ size: e.target.value });
+    }
     render() {
         return (
             <div>
@@ -73,17 +70,17 @@ class TopTable extends React.Component {
                         <span className='topRace'>用户排名</span>
                     </div>
                     <div style={{ display: 'flex' }}>
-                        <Radio.Group>
-                            <Radio.Button value="large">用电波动较大</Radio.Button>
-                            <Radio.Button value="default">优质用户</Radio.Button>
-                            <Radio.Button value="small">用电量</Radio.Button>
+                        <Radio.Group value={ this.state.size} onChange={this.handleSizeChange}>
+                            <Radio.Button onClick={(a,b) =>this.sortTop('error',false)}  value="large">用电波动较大</Radio.Button>
+                            <Radio.Button onClick={(a,b) =>this.sortTop('error',true)} value="default">优质用户</Radio.Button>
+                            <Radio.Button onClick={(a,b) =>this.sortTop('electric',false)} value="small">用电量</Radio.Button>
                         </Radio.Group>
 
                         <Search
                         className='searchInput'
                         placeholder="input search text"
                         style={{ width: 160,marginLeft:'15px'  }}
-                        onSearch={value => console.log(value)}
+                        onSearch={value =>this.searchKeyWord(value)}
                          />
                     </div>
                 </div>

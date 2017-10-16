@@ -10,6 +10,8 @@ import SIETabs from '../../components/tabs/Tabs';
 import TopTen from '../totalityTopten/totalityTopten';
 // 月售电计划
 import Month from '../totalityMonth/TotalityMonth';
+// 历史用电
+import History from '../totalityHistory/TotalityHistory';
 // 用电监测与分析
 import Analyze from '../totalityAnalyze/totalityAnalyze';
 
@@ -34,7 +36,7 @@ class Totaily extends React.Component {
                     title: '历史用电',
                     index: '3',
                     url: '',
-                    content:'历史用电'
+                    content: <History/>
                 },
                 {
                     title: '使用电量排行',

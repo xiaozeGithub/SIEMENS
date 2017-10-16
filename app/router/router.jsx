@@ -15,6 +15,7 @@ export default class Routers extends Component {
     static contextTypes = {
         router: React.PropTypes.object
     }
+    
     render() {
         return (
             <Router history={hashHistory}>

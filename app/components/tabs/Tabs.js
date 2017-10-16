@@ -9,7 +9,7 @@ class SETabs extends React.Component {
         this.state = {
             curTabs: '1',
             tabsArr: this.props.content,
-            curContent: '实时用电监测与分析'
+            curContent: this.props.content[0].content
         }
     }
     tabBarChange = (item)=>{

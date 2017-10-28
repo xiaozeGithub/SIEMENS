@@ -1,0 +1,95 @@
+.eleCompare {
+    width: 90%;
+    margin: 0 auto;
+    color: #818181;
+}
+
+.eleCompare .top {
+    width: 100%;
+    display: flex;
+}
+
+.eleCompare .top span {
+    /* margin-left: 28.5%; */
+    flex: 1;
+    text-align: right;
+}
+
+.eleCompare .mid {
+    height: 30px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    background: #d8d8d8;
+}
+
+.eleCompare .one {
+    float: left;
+    height: 30px;
+    width: 75%;
+    border-radius: 15px;
+    background-image: -webkit-linear-g radient(to right, #fd9062, #f07655);
+    background-image: linear-gradient(to right, #fd9062, #f07655);
+}
+
+.eleCompare .two {
+    float: right;
+    height: 30px;
+    width: 16%;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 15px;
+    color: #fff;
+    background-image: -webkit-linear-g radient(to right, #fd9062, #f07655);
+    background-image: linear-gradient(to right, #fd9062, #f07655);
+}
+
+.eleCompare .bottom {
+    width: 100%;
+    display: flex;
+}
+
+.eleCompare .bottom>span {
+    flex: 1;
+    text-align: right;
+    position: relative;
+}
+
+.eleCompare .bottom>span:first-child {
+    display: flex;
+}
+
+.eleCompare .bottom>span>span {
+    flex: 1;
+}
+
+.eleCompare .bottom span.time {
+    text-align: left;
+}
+
+.eleCompare .bottom span.day {
+    position: relative;
+}
+
+.eleCompare .bottom span.day::after {
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    display: block;
+    content: '';
+    border: 5px solid transparent;
+    border-bottom-color: #818181;
+}
+
+
+/* .bottom :nth-child(2n) {
+    border-bottom: 1px dashed #333;
+} */
+
+.eleCompare span>i {
+    position: absolute;
+    top: 50%;
+    right: 32%;
+    width: 50%;
+    border-top: 1px dashed #818181;
+}

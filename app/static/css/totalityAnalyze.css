@@ -10,6 +10,8 @@
 }
 .analyzeContent{
     margin-top: 10px;
-    background: pink;
-    flex: 4
+    background: #fff;
+    flex: 4;
+ 
+    overflow-y:scroll;
 }

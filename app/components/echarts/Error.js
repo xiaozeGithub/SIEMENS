@@ -52,9 +52,9 @@ class ErrorUser extends Component {
                     </Col>
                 </Row>
                 {
-                    this.state.userErroMsg.map(function (item) {
+                    this.state.userErroMsg.map(function (item, index) {
                         return (
-                            <Row className='errorContent' type={'flex'} justify={'space-between'} >
+                            <Row key={index} className='errorContent' type={'flex'} justify={'space-between'} >
                                 <Col className='errorColStyle' span={6}>
                                     <span className='errorContentStyle'>{item.name}</span>
                                 </Col>

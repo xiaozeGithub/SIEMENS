@@ -1,7 +1,7 @@
 .errorContainer{
      width: 100%;
       height: 100%;
-      padding:10px 15px;
+      padding:5px 15px;
       display: flex;
       flex-direction: column;
 }
@@ -13,6 +13,7 @@
 }
 .errorTitleStyle{
     font-size: 14px;
+    font-weight: 600;
     color: #333;
 }
 .errorTitleLinkStyle{
@@ -20,6 +21,9 @@
     color:#82abf0;
 }
 .flexRight{
+    justify-content: flex-end;
+}
+.flexBetween{
     justify-content: flex-end;
 }
 .errorColStyle{
@@ -47,4 +51,28 @@
     width: 20%;
     color:#d7d7d7;
     text-align: center;
+}
+.compareOption{
+    color:#d7d7d7;
+    font-size: 12px;
+    width: 20%;
+    position: relative;
+    text-align: right
+}
+.compareOption::before{
+    content: '';
+    position: absolute;
+    left:30%;
+    top: 3px;
+    width: 12px;
+    height: 12px;
+    background: #d7d7d7;
+    border-radius: 50%;
+   
+}
+.compareOption:nth-child(2)::before{
+    background: #0fb9b6;
+}
+.compareOption:nth-child(3)::before{
+    background: #fba07f;
 }

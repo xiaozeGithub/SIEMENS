@@ -12,10 +12,8 @@ class SelectTime extends React.Component {
         super(props, context)
         this.state = {
             startTimeList: this.props.timeSelect,
-            startTime: '2016年6月',
-            endTime: '2016年6月',
-            startTimeIndex: '1',
-            endTimeIndex: '1'
+            startTimeIndex: '0',
+            endTimeIndex: '0'
         }
     }
     handleEndChange = (value) => {
@@ -37,11 +35,11 @@ class SelectTime extends React.Component {
         return (
             <Row gutter={8} style={{width:'100%'}}>
                 <Col span={8}>
-                    <Select defaultValue={this.state.startTime} style={{ width: '100%' }} onChange={this.handleStartChange}>
+                    <Select defaultValue={this.state.startTimeList[0]} style={{ width: '100%' }} onChange={this.handleStartChange}>
                         {
-                            this.state.startTimeList.map(function (item) {
+                            this.state.startTimeList.map(function (item,index) {
                                 return (
-                                    <Option key={item.key} value={item.key}>{item.time}</Option>
+                                    <Option key={item} value={index+''}>{item}</Option>
                                 )
                             })
                         }
@@ -51,11 +49,11 @@ class SelectTime extends React.Component {
                     <div className='selectTimeTo' >——</div>
                 </Col>
                 <Col span={8}>
-                    <Select defaultValue={this.state.endTime} style={{ width: '100%' }} onChange={this.handleEndChange}>
+                    <Select defaultValue={this.state.startTimeList[0]} style={{ width: '100%' }} onChange={this.handleEndChange}>
                     {
-                        this.state.startTimeList.map(function (item) {
+                        this.state.startTimeList.map(function (item, index) {
                             return (
-                                <Option key={item.key} value={item.key}>{item.time}</Option>
+                                <Option key={item} value={index+''}>{item}</Option>
                             )
                         })
                     }

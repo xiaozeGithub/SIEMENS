@@ -7,39 +7,22 @@ class ErrorUser extends Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            userErroMsg: [
-                {
-                    name: '单体用户1',
-                    electricityError: '76%',
-                    electricityErrorNum: '55°'
-                },
-                {
-                    name: '单体用户2',
-                    electricityError: '60%',
-                    electricityErrorNum: '45°'
-                },
-                {
-                    name: '单体用户3',
-                    electricityError: '46%',
-                    electricityErrorNum: '30°'
-                },
-                {
-                    name: '单体用户4',
-                    electricityError: '30%',
-                    electricityErrorNum: '18°'
-                },
-                {
-                    name: '单体用户5',
-                    electricityError: '20%',
-                    electricityErrorNum: '10°'
-                }
-            ]
+            userErroMsg: this.props.content
         }
     }
-    componentDidMount() {
+    componentWillMount() {
+        let errObj = this.state.userErroMsg;
+        let maxError = errObj[0].error;
 
+        errObj = errObj.map(function (item,index) {
+            item.electricityError =  (item.error/maxError) * 76+'%'
+        });
+        console.log(errObj);
     }
     render() {
+        {
+            console.log(this.state.userErroMsg);
+        }
         return (
             <div className='errorContainer'>
 
@@ -50,17 +33,20 @@ class ErrorUser extends Component {
                     <Col className='errorColStyle flexRight' span={8}>
                         <span className='errorTitleLinkStyle'>用户排名</span>
                     </Col>
+                    {
+                        // item.electricityError
+                    }
                 </Row>
                 {
                     this.state.userErroMsg.map(function (item, index) {
                         return (
                             <Row key={index} className='errorContent' type={'flex'} justify={'space-between'} >
                                 <Col className='errorColStyle' span={6}>
-                                    <span className='errorContentStyle'>{item.name}</span>
+                                    <span className='errorContentStyle'>{item.customerName}</span>
                                 </Col>
                                 <Col className='errorColStyle' span={18}>
-                                    <div className='errorContentShow' style={{ width: item.electricityError }}></div>
-                                    <div className='errorContentNumShow'>{item.electricityErrorNum}</div>
+                                    <div className='errorContentShow' style={{ width: item.electricityError}}></div>
+                                    <div className='errorContentNumShow'>{item.error+'°'}</div>
                                 </Col>
                             </Row>
                         )

@@ -9,7 +9,8 @@ class CompareElec extends Component {
         this.state = {
             compareMsg: [
 
-            ]
+            ],
+            compareObj:this.props.content
         }
     }
     componentDidMount() {
@@ -30,12 +31,12 @@ class CompareElec extends Component {
                     </Col>
                 </Row>
                 <Row style={compareGraph}>
-                    <Col style={compareGraphCol} span={20}>
+                    <Col style={compareGraphCol} span={19}>
                         <div className="eleCompare">
                             <div className="top">
-                                <span>333°</span>
-                                <span>556°</span>
-                                <span>888°</span>
+                                <span>{this.state.compareObj.predict_ten_day}°</span>
+                                <span>{this.state.compareObj.predict_twenty_day}°</span>
+                                <span>{this.state.compareObj.predict_thirty_day}°</span>
                             </div>
                             <div className="mid">
                                 <span className="one">
@@ -49,10 +50,10 @@ class CompareElec extends Component {
                             </div>
                         </div>
                     </Col>
-                    <Col style={compareGraphColR} span={4}>
-                        <div style={compareGraphColRContent} ><span style={{ color: '#d7d7d7' }}>本月已用电量</span> <span> 666°</span></div>
-                        <div style={compareGraphColRContent}><span style={{ color: '#d7d7d7' }}>本月已用电量</span>  <span> 886°</span></div>
-                        <div style={compareGraphColRContent}><span style={{ color: '#d7d7d7' }}>今日用电量</span>  <span> 66°</span></div>
+                    <Col style={compareGraphColR} span={5}>
+                        <div style={compareGraphColRContent} ><span style={{ color: '#d7d7d7' }}>本月预测电量</span> <span> {this.state.compareObj.predict_month_data}°</span></div>
+                        <div style={compareGraphColRContent}><span style={{ color: '#d7d7d7' }}>本月已用电量</span>  <span> {this.state.compareObj.used_data}°</span></div>
+                        <div style={compareGraphColRContent}><span style={{ color: '#d7d7d7' }}>今日用电量</span>  <span> {this.state.compareObj.today_data}°</span></div>
                     </Col>
                 </Row>
             </div>
@@ -82,3 +83,5 @@ const compareGraphColRContent = {
     lineHeight: '22px',
     justifyContent: 'space-between',
 }
+
+

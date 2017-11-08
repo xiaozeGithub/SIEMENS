@@ -7,17 +7,18 @@ class Hint extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            msg: '修改数据成功',
-            type: 'success'
+            msg: this.props.content.text,
+            type: this.props.content.type
             // msg: this.props.message
         }
     }
 
     render() {
+        
         return (
             <div style={hintStyle}>
                 <div style={hintContainer}>
-                    <Icon style={{color:'#00b39e',fontSize: '18px'}} type="check-circle" />
+                    <Icon style={{color:this.state.type==='success'?'#00b39e':'red',fontSize: '18px'}} type={this.state.type==='success'?'check-circle':'info-circle-o'}/>
                     <div style={{marginLeft: '10px'}}>{this.state.msg}</div>
                 </div>
                  

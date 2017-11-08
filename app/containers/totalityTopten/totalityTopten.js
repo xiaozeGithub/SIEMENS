@@ -6,48 +6,12 @@ import { Row, Col } from 'antd';
 import '../../static/css/total_topten.css'
 import Table from '../../components/table/table'
 
-let dataArr = [{
-    key: '4',
-    user: 'John Brown',
-    electric: '666°',
-    error: '13%',
-    address: 'New York No. 1 Lake Park',
-}, {
-    key: '2',
-    user: 'Jim Green',
-    electric: '200°',
-    error: '15%',
-    address: 'London No. 1 Lake Park',
-}
-, {
-    key: '3',
-    user: 'Joe Black',
-    electric: '300°',
-    error: '12%',
-    address: 'Sidney No. 1 Lake Park',
-}
-, {
-    key: '5',
-    user: 'Aj',
-    electric: '300°',
-    error: '12%',
-    address: 'Sidney No. 1 Lake Park',
-}
-, {
-    key: '6',
-    user: 'zening',
-    electric: '300°',
-    error: '12%',
-    address: 'Sidney No. 1 Lake Park',
-}
-];
 
 let columns = [{
     title: '排名',
     dataIndex: 'top',
     key: 'top',
     render: (text, record,dataIndex) => {
-
         return (
             <div className='topTenLogo'>{dataIndex+1}</div>
         )
@@ -55,33 +19,116 @@ let columns = [{
 
 }, {
     title: '用户名',
-    dataIndex: 'user',
-    key: 'user',
+    dataIndex: 'customerName',
+    key: 'customerName',
 }, {
     title: '用电量',
-    dataIndex: 'electric',
-    key: 'electric',
+    dataIndex: 'realData',
+    key: 'realData',
 }, {
     title: '误差',
     dataIndex: 'error',
     key: 'error',
 }, {
     title: '地理位置',
-    dataIndex: 'address',
-    key: 'address',
+    dataIndex: 'position',
+    key: 'position',
 }
 ];
 
 class Topten extends React.Component {
     constructor(props, context) {
-        super(props, context)
+        super(props, context);
+        this.state = {
+            dataArr: []
+        }
     }
-
+    getTopData(){
+           // const _url = 'http://192.168.0.106:8080/siemenspre_war_exploded/edata/getRealtimeAll?userId=1';
+        // fetch(_url, {
+        //     method: 'GET'
+        // }).then(response => response.json()).then(values => {
+        //     //    重新排序
+        //     values.m_customer.filter(x => {
+        //         if (x.error < 0) {
+        //             x.error = -x.error;
+        //             console.log(x.error);
+        //             return x;
+        //         }
+        //     });
+        const topTenArr = {
+            "current_page": 2,
+            "page_amount": 2,
+            "userInfor": [
+                {
+                    "customerName": "user1029356",
+                    "error": 1,
+                    "position": "Beijing",
+                    "realData": 567909554
+                }, {
+                    "customerName": "user1029351",
+                    "error": 1,
+                    "position": "Beijing",
+                    "realData": 546260009
+                }, {
+                    "customerName": "user1029414",
+                    "error": 11,
+                    "position": "Beijing",
+                    "realData": 133497986
+                }, {
+                    "customerName": "user1028802",
+                    "error": 0,
+                    "position": "Beijing",
+                    "realData": 131330754
+                }, {
+                    "customerName": "user1029010",
+                    "error": 0,
+                    "position": "Beijing",
+                    "realData": 117058710
+                }, {
+                    "customerName": "user1028978",
+                    "error": 0,
+                    "position": "Beijing",
+                    "realData": 101286417
+                }, {
+                    "customerName": "uaser1029037",
+                    "error": 1,
+                    "position": "Beijing",
+                    "realData": 97382457
+                }, {
+                    "customerName": "user1029051",
+                    "error": 8,
+                    "position": "Beijing",
+                    "realData": 90444372
+                }, {
+                    "customerName": "user1029107",
+                    "error": -2,
+                    "position": "Beijing",
+                    "realData": 23962889
+                }, {
+                    "customerName": "uaser1029164",
+                    "error": -48,
+                    "position": "Beijing",
+                    "realData": 18645486
+                }
+            ]
+        }
+        topTenArr.userInfor.map((item)=>{
+            item.error += '%';
+            item.key = item.customerName
+        })
+        this.setState({
+            dataArr: topTenArr.userInfor
+        })
+    }
+    componentWillMount(){
+        this.getTopData();
+    }
     render() {
         return (
             <div className='toptenContainer'>
-                <Table columns={columns} data={dataArr} />
-            </div >
+                <Table columns={columns} data={this.state.dataArr}/>
+            </div>
         )
     }
 }

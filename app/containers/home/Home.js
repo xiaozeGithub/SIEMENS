@@ -17,12 +17,66 @@ class Home extends React.Component {
         super(props, context)
         // this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
-            siderArr: [
-                { title: '总体用电', key: 1, link: '/home' },
-                { title: '我关注的用户', key: 2, link: '/' },
-                { title: '所有用户', key: 3, link: '/' },
-            ]
+            customerAllList: [],
+            customerFavList: []
         }
+    }
+    componentWillMount(){
+            // let _url = 'http://192.168.0.106:8080/siemenspre_war_exploded/common/getCuslist?userId=1&favourite=no'
+         // fetch(_url, {
+            //     method: 'GET'
+            // }).then(response => response.json()).then(values => {
+            //     //    重新排序
+            //     values.m_customer.filter(x => {
+            //         if (x.error < 0) {
+            //             x.error = -x.error;
+            //             console.log(x.error);
+            //             return x;
+            //         }
+            //     });
+        let customerAllList = [{
+            "cId": 1016529,
+            "customerName": "user1016529",
+            "favourite": "no"
+        }, {
+            "cId": 1028802,
+            "customerName": "user1028802",
+            "favourite": "no"
+        }, {
+            "cId": 1029010,
+            "customerName": "user1029010",
+            "favourite": "yes"
+        }, {
+            "cId": 1029051,
+            "customerName": "user1029051",
+            "favourite": "yes"
+        }, {
+            "cId": 1029073,
+            "customerName": "user1029037",
+            "favourite": "yes"
+        }, {
+            "cId": 1029164,
+            "customerName": "user1029164",
+            "favourite": "yes"
+        }, {
+            "cId": 1029351,
+            "customerName": "user1029351",
+            "favourite": "yes"
+        }, {
+            "cId": 1029356,
+            "customerName": "user1029356",
+            "favourite": "yes"
+        }, {
+            "cId": 1029414,
+            "customerName": "user1029414",
+            "favourite": "yes"
+        }];
+        
+        this.setState({
+            customerAllListVTemp: customerAllList,
+            customerAllList: customerAllList
+        });
+
     }
     toggleCollapsed = () => {
         this.setState({
@@ -30,12 +84,36 @@ class Home extends React.Component {
         });
     }
 
-
-    shadeTemplate = (template) => {
+    changeFavHeartSatus(e,index){
+        e.stopPropagation();
+        let curFavStatus = this.state.customerAllList[index].favourite === 'yes'?'no':'yes';
+                 // fetch(_url, {
+            //     method: 'GET'
+            // }).then(response => response.json()).then(values => {
+            //     //    重新排序
+            //     values.m_customer.filter(x => {
+            //         if (x.error < 0) {
+            //             x.error = -x.error;
+            //             console.log(x.error);
+            //             return x;
+            //         }
+            //     });
+        this.state.customerAllList[index].favourite = curFavStatus;
         this.setState({
-            shadeTemplate: template
-        });
+            customerAllList : this.state.customerAllList
+        })
+        
     }
+    SearchCustomer(values){
+        console.log(values);
+        let searchCusArr = this.state.customerAllListVTemp.filter(x =>  x['customerName'].indexOf(values)!==-1);
+        console.log(searchCusArr);
+        this.setState({
+            customerAllList : searchCusArr
+        })
+
+    }
+
     render() {
         return (
             <Layout className="layout" style={{ height: '100%', background: this.context.color }}>
@@ -62,8 +140,8 @@ class Home extends React.Component {
                     >
                         <Search
                             placeholder="input search text"
-                            style={{ width: 160,marginLeft:'20px',marginTop:'15px'  }}
-                            onSearch={value => console.log(value)}
+                            style={{ width: 160,marginLeft:'20px',marginTop:'15px',color:'#ffffff'  }}
+                            onSearch={value => this.SearchCustomer(value)}
                         />
                         <Menu
                             mode="inline"
@@ -73,14 +151,28 @@ class Home extends React.Component {
                         >
                           
                             <Menu.Item key="sub1" ><Link style={{ display: 'block' }} to='/home'></Link><span><Icon type="user" />总体用电</span></Menu.Item>
-                            <SubMenu key="sub2" title={<span><Icon type="laptop" />我关注的用户</span>}>
-                                <Menu.Item key="5">option5</Menu.Item>
-                                <Menu.Item key="6">option6</Menu.Item>
-                                <Menu.Item key="7">option7</Menu.Item>
-                                <Menu.Item key="8">option8</Menu.Item>
+                            <SubMenu  title={<span><Icon type="laptop" />我关注的用户</span>}>
+                                {
+                                    this.state.customerAllList.map((item,index) => {
+                                        if(item.favourite === 'yes'){
+                                            return (
+                                                <Menu.Item key= {item.cId}>{item.customerName} &nbsp;<Icon type="heart" onClick={(e)=>{this.changeFavHeartSatus(e,index)}} style={{ fontSize: 16, color: '#f07655' }} /></Menu.Item>
+                                            ) 
+                                        }
+                                      
+                                    })
+                                }
                             </SubMenu>
                             <SubMenu key="sub3" title={<span><Icon type="notification" />所有用户</span>}>
-                                <Menu.Item key="9"><Link style={{ display: 'block' }} to='/home/individual'></Link>用户1</Menu.Item>
+                                {/*<Menu.Item key="9"><Link style={{ display: 'block' }} to='/home/individual'></Link>用户1</Menu.Item>*/}
+                                {
+                                    this.state.customerAllList.map( (item, index) => {
+                                        let iconStatus = item.favourite == 'yes'?<Icon onClick={(e)=>{this.changeFavHeartSatus(e,index)}}  type="heart" style={{ fontSize: 16, color: '#f07655' }} />:<Icon onClick={(e)=>{this.changeFavHeartSatus(e,index)}}  type="heart-o" style={{ fontSize: 16, color: '#f07655' }} />;
+                                        return (
+                                            <Menu.Item key= {item.cId}>{item.customerName} &nbsp;{iconStatus} </Menu.Item>
+                                        )
+                                    })
+                                }
                             </SubMenu>
                         </Menu>
                     </Sider>

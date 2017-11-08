@@ -19,27 +19,28 @@
         log('ECharts is not Loaded');
         return;
     }
-    echarts.registerTheme('vintage', {
+    echarts.registerTheme('siemens', {
         "color": [
-            "#d87c7c",
-            "#919e8b",
-            "#d7ab82",
-            "#6e7074",
+            "#59d1d0",
+            "#cfcfcf",
             "#61a0a8",
-            "#efa18d",
-            "#787464",
-            "#cc7e63",
-            "#724e58",
-            "#4b565b"
+            "#d48265",
+            "#91c7ae",
+            "#749f83",
+            "#ca8622",
+            "#bda29a",
+            "#6e7074",
+            "#546570",
+            "#c4ccd3"
         ],
-        "backgroundColor": "rgba(254,248,239,1)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
         "textStyle": {},
         "title": {
             "textStyle": {
-                "color": "#333333"
+                "color": "#333"
             },
             "subtextStyle": {
-                "color": "#aaa"
+                "color": "#aaaaaa"
             }
         },
         "line": {
@@ -196,21 +197,22 @@
             "symbol": "emptyCircle",
             "smooth": false,
             "color": [
-                "#d87c7c",
-                "#919e8b",
-                "#d7ab82",
-                "#6e7074",
+                "#59d1d0",
+                "#cfcfcf",
                 "#61a0a8",
-                "#efa18d",
-                "#787464",
-                "#cc7e63",
-                "#724e58",
-                "#4b565b"
+                "#d48265",
+                "#91c7ae",
+                "#749f83",
+                "#ca8622",
+                "#bda29a",
+                "#6e7074",
+                "#546570",
+                "#c4ccd3"
             ],
             "label": {
                 "normal": {
                     "textStyle": {
-                        "color": "#eee"
+                        "color": "#ffffff"
                     }
                 }
             }
@@ -218,20 +220,20 @@
         "map": {
             "itemStyle": {
                 "normal": {
-                    "areaColor": "#eeeeee",
-                    "borderColor": "#444444",
+                    "areaColor": "#eee",
+                    "borderColor": "#444",
                     "borderWidth": 0.5
                 },
                 "emphasis": {
                     "areaColor": "rgba(255,215,0,0.8)",
-                    "borderColor": "#444444",
+                    "borderColor": "#444",
                     "borderWidth": 1
                 }
             },
             "label": {
                 "normal": {
                     "textStyle": {
-                        "color": "#000000"
+                        "color": "#000"
                     }
                 },
                 "emphasis": {
@@ -244,20 +246,20 @@
         "geo": {
             "itemStyle": {
                 "normal": {
-                    "areaColor": "#eeeeee",
-                    "borderColor": "#444444",
+                    "areaColor": "#eee",
+                    "borderColor": "#444",
                     "borderWidth": 0.5
                 },
                 "emphasis": {
                     "areaColor": "rgba(255,215,0,0.8)",
-                    "borderColor": "#444444",
+                    "borderColor": "#444",
                     "borderWidth": 1
                 }
             },
             "label": {
                 "normal": {
                     "textStyle": {
-                        "color": "#000000"
+                        "color": "#000"
                     }
                 },
                 "emphasis": {
@@ -283,7 +285,7 @@
             "axisLabel": {
                 "show": true,
                 "textStyle": {
-                    "color": "#333"
+                    "color": "#6d6d6d"
                 }
             },
             "splitLine": {
@@ -320,7 +322,7 @@
             "axisLabel": {
                 "show": true,
                 "textStyle": {
-                    "color": "#333"
+                    "color": "#6d6d6d"
                 }
             },
             "splitLine": {
@@ -418,16 +420,16 @@
         "toolbox": {
             "iconStyle": {
                 "normal": {
-                    "borderColor": "#999999"
+                    "borderColor": "#999"
                 },
                 "emphasis": {
-                    "borderColor": "#666666"
+                    "borderColor": "#666"
                 }
             }
         },
         "legend": {
             "textStyle": {
-                "color": "#333333"
+                "color": "#333"
             }
         },
         "tooltip": {
@@ -470,7 +472,7 @@
             },
             "checkpointStyle": {
                 "color": "#e43c59",
-                "borderColor": "rgba(194,53,49,0.5)"
+                "borderColor": "rgba(194,53,49, 0.5)"
             },
             "label": {
                 "normal": {
@@ -499,19 +501,19 @@
             "handleColor": "#a7b7cc",
             "handleSize": "100%",
             "textStyle": {
-                "color": "#333333"
+                "color": "#333"
             }
         },
         "markPoint": {
             "label": {
                 "normal": {
                     "textStyle": {
-                        "color": "#eee"
+                        "color": "#ffffff"
                     }
                 },
                 "emphasis": {
                     "textStyle": {
-                        "color": "#eee"
+                        "color": "#ffffff"
                     }
                 }
             }

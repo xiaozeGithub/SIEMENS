@@ -11,14 +11,41 @@ class NormalLoginForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                // console.log('Received values of form: ', values);
+               console.log(values);
+                const _url = 'http://192.168.0.106:8080/siemenspre_war_exploded/auth/login'
+                  fetch(_url,{
+                             method:'post',
+                             headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                              },
+                             body:`userName=${values.userName}&password=${values.password}`
+                        }).then(response => response.json())
+                 .then(values =>{
+                     if(values.isSuccess){
+                              this.context.router.push('/home');
+                     }
+                 })
+                 .catch(e => console.log("Oops, error", e));
+            
             }
         });
     }
     static contextTypes = { router: React.PropTypes.object };
     isSubmit = () => {
         console.log(this.context);
-        this.context.router.push('/home');  
+        // this.context.router.push('/home');  
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((err, fieldsValue) => {
+            if (!err) {
+                const values = {
+                    ...fieldsValue,
+                    'date-time-picker': fieldsValue['date-time-picker'].format('YYYY-MM-DD HH:mm:ss')
+                }
+                this.context.getFormVal(values)
+                // console.log('Received values of form: ', values);
+            }
+        });
     }
     render() {
         const { getFieldDecorator } = this.props.form;
@@ -46,7 +73,7 @@ class NormalLoginForm extends React.Component {
                         <Checkbox>记住密码</Checkbox>
                         )}
 
-                    <div  onClick={this.isSubmit} style={{ marginTop: '16px' }} className='loginSubmit'>登 录</div>
+                    <div  onClick={this.handleSubmit} style={{ marginTop: '16px' }} className='loginSubmit'>登 录</div>
                     <Row style={{ marginTop: '6px' }}>
                         <Col span={8}> <a className="login-form-forgot" href="">忘记密码</a></Col>
                         <Col style={{textAlign: 'right'}} span={8} offset={8}>还没有账号？<a href="" style={{color: '#47a1ea'}}>注册</a></Col>

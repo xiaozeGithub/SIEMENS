@@ -30,9 +30,9 @@ class EchartsBar extends Component {
                 toolbox: {
                     show: true,
                     feature: {
-                        dataView: { show: true, readOnly: false },
-                        magicType: { show: true, type: ['line', 'bar'] },
-                        restore: { show: true },
+                        // dataView: { show: true, readOnly: false },
+                        // magicType: { show: true, type: ['line', 'bar'] },
+                        // restore: { show: true },
                         saveAsImage: { show: true }
                     }
                 },
@@ -87,7 +87,7 @@ class EchartsBar extends Component {
     }
     componentDidMount() {
         // 基于准备好的dom，初始化echarts实例
-        let myChart = echarts.init(document.getElementById('echartBar'),'vintage');
+        let myChart = echarts.init(document.getElementById('echartBar'),'siemens');
         // 绘制图表
         myChart.setOption(this.state.data);
     }

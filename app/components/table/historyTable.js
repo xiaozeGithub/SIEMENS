@@ -8,7 +8,8 @@ const { Column, ColumnGroup } = Table;
 const Search = Input.Search;
 import '../../static/css/table.css'
 import SelectTime from '../selectTime/SelectTime'
-
+// 引入图标组件
+import EchartBar from '../../components/echarts/EchartBar'
 
 
 
@@ -39,6 +40,7 @@ class TopTable extends React.Component {
             timeSpace: []
         }
     }
+
     getArrData(){
           // const _url = 'http://192.168.0.106:8080/siemenspre_war_exploded/edata/getRealtimeAll?userId=1';
             // fetch(_url, {
@@ -47,386 +49,36 @@ class TopTable extends React.Component {
             //     });
             const getArr = {
                 "available_month": ["2016-01", "2016-06"],
-                "day_data": [
-                    {  
-                    "dayDate": "2016-04-01",
-                    "predictData": 4243079,
-                    "realData": 4928545
-                    }, {
-                        "dayDate": "2016-04-02",
-                        "predictData": 4354906,
-                        "realData": 4916933
-                    }, {
-                        "dayDate": "2016-04-03",
-                        "predictData": 3994045,
-                        "realData": 5244595
-                    }, {
-                        "dayDate": "2016-04-04",
-                        "predictData": 4026625,
-                        "realData": 5294975
-                    }, {
-                        "dayDate": "2016-04-05",
-                        "predictData": 3934463,
-                        "realData": 3814347
-                    }, {
-                        "dayDate": "2016-04-06",
-                        "predictData": 3952015,
-                        "realData": 4701601
-                    }, {
-                        "dayDate": "2016-04-07",
-                        "predictData": 4148499,
-                        "realData": 5288316
-                    }, {
-                        "dayDate": "2016-04-08",
-                        "predictData": 3511349,
-                        "realData": 4323356
-                    }, {
-                        "dayDate": "2016-04-09",
-                        "predictData": 3718366,
-                        "realData": 4294798
-                    }, {
-                        "dayDate": "2016-04-10",
-                        "predictData": 4050907,
-                        "realData": 4158698
-                    }, {
-                        "dayDate": "2016-04-11",
-                        "predictData": 3429158,
-                        "realData": 4176373
-                    }, {
-                        "dayDate": "2016-04-12",
-                        "predictData": 3458505,
-                        "realData": 4482561
-                    }, {
-                        "dayDate": "2016-04-13",
-                        "predictData": 3856076,
-                        "realData": 4805973
-                    }, {
-                        "dayDate": "2016-04-14",
-                        "predictData": 3542044,
-                        "realData": 4798801
-                    }, {
-                        "dayDate": "2016-04-15",
-                        "predictData": 3436781,
-                        "realData": 4820280
-                    }, {
-                        "dayDate": "2016-04-16",
-                        "predictData": 3598093,
-                        "realData": 4828289
-                    }, {
-                        "dayDate": "2016-04-17",
-                        "predictData": 3383443,
-                        "realData": 4881318
-                    }, {
-                        "dayDate": "2016-04-18",
-                        "predictData": 3234903,
-                        "realData": 4397782
-                    }, {
-                        "dayDate": "2016-04-19",
-                        "predictData": 3345657,
-                        "realData": 4696758
-                    }, {
-                        "dayDate": "2016-04-20",
-                        "predictData": 3091365,
-                        "realData": 5478409
-                    }, {
-                        "dayDate": "2016-04-21",
-                        "predictData": 3332266,
-                        "realData": 4631584
-                    }, {
-                        "dayDate": "2016-04-22",
-                        "predictData": 3166864,
-                        "realData": 4904026
-                    }, {
-                        "dayDate": "2016-04-23",
-                        "predictData": 3263353,
-                        "realData": 5052942
-                    }, {
-                        "dayDate": "2016-04-24",
-                        "predictData": 3427754,
-                        "realData": 5265104
-                    }, {
-                        "dayDate": "2016-04-25",
-                        "predictData": 3398071,
-                        "realData": 5437844
-                    }, {
-                        "dayDate": "2016-04-26",
-                        "predictData": 3348492,
-                        "realData": 5307815
-                    }, {
-                        "dayDate": "2016-04-27",
-                        "predictData": 3595732,
-                        "realData": 5522880
-                    }, {
-                        "dayDate": "2016-04-28",
-                        "predictData": 3554713,
-                        "realData": 5636594
-                    }, {
-                        "dayDate": "2016-04-29",
-                        "predictData": 3564009,
-                        "realData": 5936703
-                    }, {
-                        "dayDate": "2016-04-30",
-                        "predictData": 3366476,
-                        "realData": 5496833
-                    }, {
-                        "dayDate": "2016-05-01",
-                        "predictData": 5004075,
-                        "realData": 4048043
-                    }, {
-                        "dayDate": "2016-05-02",
-                        "predictData": 5417293,
-                        "realData": 4504617
-                    }, {
-                        "dayDate": "2016-05-03",
-                        "predictData": 5526478,
-                        "realData": 5524496
-                    }, {
-                        "dayDate": "2016-05-04",
-                        "predictData": 5343440,
-                        "realData": 6097965
-                    }, {
-                        "dayDate": "2016-05-05",
-                        "predictData": 5334709,
-                        "realData": 6164683
-                    }, {
-                        "dayDate": "2016-05-06",
-                        "predictData": 5172754,
-                        "realData": 6138134
-                    }, {
-                        "dayDate": "2016-05-07",
-                        "predictData": 4771127,
-                        "realData": 6277354
-                    }, {
-                        "dayDate": "2016-05-08",
-                        "predictData": 4686569,
-                        "realData": 6220291
-                    }, {
-                        "dayDate": "2016-05-09",
-                        "predictData": 4826827,
-                        "realData": 6006679
-                    }, {
-                        "dayDate": "2016-05-10",
-                        "predictData": 4983045,
-                        "realData": 5368082
-                    }, {
-                        "dayDate": "2016-05-11",
-                        "predictData": 5078507,
-                        "realData": 5704587
-                    }, {
-                        "dayDate": "2016-05-12",
-                        "predictData": 5002264,
-                        "realData": 5434182
-                    }, {
-                        "dayDate": "2016-05-13",
-                        "predictData": 4776463,
-                        "realData": 5379264
-                    }, {
-                        "dayDate": "2016-05-14",
-                        "predictData": 4712162,
-                        "realData": 4135452
-                    }, {
-                        "dayDate": "2016-05-15",
-                        "predictData": 4714828,
-                        "realData": 4487691
-                    }, {
-                        "dayDate": "2016-05-16",
-                        "predictData": 4763081,
-                        "realData": 5125861
-                    }, {
-                        "dayDate": "2016-05-17",
-                        "predictData": 4890639,
-                        "realData": 4402863
-                    }, {
-                        "dayDate": "2016-05-18",
-                        "predictData": 5028856,
-                        "realData": 4745060
-                    }, {
-                        "dayDate": "2016-05-19",
-                        "predictData": 4943032,
-                        "realData": 5531640
-                    }, {
-                        "dayDate": "2016-05-20",
-                        "predictData": 4846830,
-                        "realData": 5768995
-                    }, {
-                        "dayDate": "2016-05-21",
-                        "predictData": 4796807,
-                        "realData": 5634585
-                    }, {
-                        "dayDate": "2016-05-22",
-                        "predictData": 4870282,
-                        "realData": 5353741
-                    }, {
-                        "dayDate": "2016-05-23",
-                        "predictData": 4979293,
-                        "realData": 5545163
-                    }, {
-                        "dayDate": "2016-05-24",
-                        "predictData": 5142588,
-                        "realData": 5375912
-                    }, {
-                        "dayDate": "2016-05-25",
-                        "predictData": 5183599,
-                        "realData": 5594162
-                    }, {
-                        "dayDate": "2016-05-26",
-                        "predictData": 4973194,
-                        "realData": 5496360
-                    }, {
-                        "dayDate": "2016-05-27",
-                        "predictData": 4878319,
-                        "realData": 6019838
-                    }, {
-                        "dayDate": "2016-05-28",
-                        "predictData": 4958148,
-                        "realData": 5962492
-                    }, {
-                        "dayDate": "2016-05-29",
-                        "predictData": 5066229,
-                        "realData": 5729538
-                    }, {
-                        "dayDate": "2016-05-30",
-                        "predictData": 5130160,
-                        "realData": 5897801
-                    }, {
-                        "dayDate": "2016-05-31",
-                        "predictData": 5273964,
-                        "realData": 5958520
-                    }, {
-                        "dayDate": "2016-06-01",
-                        "predictData": 5591043,
-                        "realData": 5847391
-                    }, {
-                        "dayDate": "2016-06-02",
-                        "predictData": 5844178,
-                        "realData": 6539116
-                    }, {
-                        "dayDate": "2016-06-03",
-                        "predictData": 5788267,
-                        "realData": 6437058
-                    }, {
-                        "dayDate": "2016-06-04",
-                        "predictData": 5844105,
-                        "realData": 5504774
-                    }, {
-                        "dayDate": "2016-06-05",
-                        "predictData": 5960042,
-                        "realData": 5735719
-                    }, {
-                        "dayDate": "2016-06-06",
-                        "predictData": 5970942,
-                        "realData": 5654667
-                    }, {
-                        "dayDate": "2016-06-07",
-                        "predictData": 6125495,
-                        "realData": 5662183
-                    }, {
-                        "dayDate": "2016-06-08",
-                        "predictData": 6128672,
-                        "realData": 5841074
-                    }, {
-                        "dayDate": "2016-06-09",
-                        "predictData": 6111544,
-                        "realData": 6625928
-                    }, {
-                        "dayDate": "2016-06-10",
-                        "predictData": 5972009,
-                        "realData": 6695853
-                    }, {
-                        "dayDate": "2016-06-11",
-                        "predictData": 5782013,
-                        "realData": 6806517
-                    }, {
-                        "dayDate": "2016-06-12",
-                        "predictData": 5625832,
-                        "realData": 6859608
-                    }, {
-                        "dayDate": "2016-06-13",
-                        "predictData": 5139759,
-                        "realData": 6885618
-                    }, {
-                        "dayDate": "2016-06-14",
-                        "predictData": 5501307,
-                        "realData": 6972640
-                    }, {
-                        "dayDate": "2016-06-15",
-                        "predictData": 6116723,
-                        "realData": 7492502
-                    }, {
-                        "dayDate": "2016-06-16",
-                        "predictData": 6312251,
-                        "realData": 7006799
-                    }, {
-                        "dayDate": "2016-06-17",
-                        "predictData": 6343578,
-                        "realData": 6866774
-                    }, {
-                        "dayDate": "2016-06-18",
-                        "predictData": 6131483,
-                        "realData": 6810560
-                    }, {
-                        "dayDate": "2016-06-19",
-                        "predictData": 5926325,
-                        "realData": 6522077
-                    }, {
-                        "dayDate": "2016-06-20",
-                        "predictData": 5683850,
-                        "realData": 6013705
-                    }, {
-                        "dayDate": "2016-06-21",
-                        "predictData": 5769461,
-                        "realData": 5540481
-                    }, {
-                        "dayDate": "2016-06-22",
-                        "predictData": 5934922,
-                        "realData": 5635859
-                    }, {
-                        "dayDate": "2016-06-23",
-                        "predictData": 5820599,
-                        "realData": 6149889
-                    }, {
-                        "dayDate": "2016-06-24",
-                        "predictData": 5932872,
-                        "realData": 6070964
-                    }, {
-                        "dayDate": "2016-06-25",
-                        "predictData": 5882933,
-                        "realData": 6317361
-                    }, {
-                        "dayDate": "2016-06-26",
-                        "predictData": 5732877,
-                        "realData": 6195490
-                    }, {
-                        "dayDate": "2016-06-27",
-                        "predictData": 5979603,
-                        "realData": 6741897
-                    }, {
-                        "dayDate": "2016-06-28",
-                        "predictData": 6375672,
-                        "realData": 6433758
-                    }, {
-                        "dayDate": "2016-06-29",
-                        "predictData": 6364360,
-                        "realData": 6332592
-                    }, {
-                        "dayDate": "2016-06-30",
-                        "predictData": 6393155,
-                        "realData": 6084952
-                }],
+                
+                    "day_data": [{
+                        "curMonth": "2016-04",
+                        "dayDateArr": ["2016-04-01", "2016-04-02", "2016-04-03", "2016-04-04", "2016-04-05", "2016-04-06", "2016-04-07", "2016-04-08", "2016-04-09", "2016-04-10", "2016-04-11", "2016-04-12", "2016-04-13", "2016-04-14", "2016-04-15", "2016-04-16", "2016-04-17", "2016-04-18", "2016-04-19", "2016-04-20", "2016-04-21", "2016-04-22", "2016-04-23", "2016-04-24", "2016-04-25", "2016-04-26", "2016-04-27", "2016-04-28", "2016-04-29", "2016-04-30"],
+                        "predictDataArr": [11953, 12146, 12386, 12336, 12270, 12288, 12536, 12356, 11886, 11701, 11459, 11819, 11818, 11970, 11949, 12002, 12076, 12166, 11989, 12077, 12614, 12435, 12209, 11357, 10566, 10294, 9724, 10329, 10854, 11659],
+                        "realDataArr": [11239, 12991, 13144, 11886, 6629, 11582, 12953, 12496, 12534, 12763, 12267, 11963, 12610, 12801, 13029, 13144, 13144, 13029, 12915, 13563, 12953, 12915, 12991, 13220, 12991, 12877, 13334, 13677, 13525, 12991]
+                    }, {
+                        "curMonth": "2016-05",
+                        "dayDateArr": ["2016-05-01", "2016-05-02", "2016-05-03", "2016-05-04", "2016-05-05", "2016-05-06", "2016-05-07", "2016-05-08", "2016-05-09", "2016-05-10", "2016-05-11", "2016-05-12", "2016-05-13", "2016-05-14", "2016-05-15", "2016-05-16", "2016-05-17", "2016-05-18", "2016-05-19", "2016-05-20", "2016-05-21", "2016-05-22", "2016-05-23", "2016-05-24", "2016-05-25", "2016-05-26", "2016-05-27", "2016-05-28", "2016-05-29", "2016-05-30", "2016-05-31"],
+                        "predictDataArr": [12286, 12202, 12198, 12221, 12196, 12189, 12186, 12188, 12187, 12188, 12211, 12197, 12187, 12184, 12178, 12176, 12177, 12173, 12172, 12172, 12170, 12175, 12176, 12183, 12183, 12182, 12184, 12185, 12183, 12184, 12185],
+                        "realDataArr": [7162, 11277, 13220, 13296, 14248, 13829, 13982, 14248, 13867, 12115, 13639, 13029, 13448, 14096, 14477, 13067, 11277, 10591, 13791, 14515, 14058, 13715, 13791, 12801, 14096, 14477, 14591, 15125, 15277, 14405, 14436]
+                    }, {
+                        "curMonth": "2016-06",
+                        "dayDateArr": ["2016-06-01", "2016-06-02", "2016-06-03", "2016-06-04", "2016-06-05", "2016-06-06", "2016-06-07", "2016-06-08", "2016-06-09", "2016-06-10", "2016-06-11", "2016-06-12", "2016-06-13", "2016-06-14", "2016-06-15", "2016-06-16", "2016-06-17", "2016-06-18", "2016-06-19", "2016-06-20", "2016-06-21", "2016-06-22", "2016-06-23", "2016-06-24", "2016-06-25", "2016-06-26", "2016-06-27", "2016-06-28", "2016-06-29", "2016-06-30"],
+                        "predictDataArr": [14970, 15307, 15353, 15297, 15117, 15320, 15326, 15199, 14387, 14426, 14687, 15191, 15163, 15294, 15182, 15229, 15312, 15381, 15453, 15341, 15526, 15412, 15468, 15754, 15781, 16131, 16062, 16088, 15842, 15830],
+                        "realDataArr": [14363, 14744, 15201, 15506, 15277, 14896, 14553, 15391, 15582, 15506, 16115, 15963, 15963, 16420, 16991, 16306, 16687, 16191, 15848, 10439, 14325, 14706, 14776, 14706, 12801, 15887, 16458, 16115, 16534, 16572]
+                    }],
                     "month_data": [{
                         "monthDate": "2016-04",
-                        "predictData": 108328009,
-                        "realData": 147525033
+                        "predictData": 353224,
+                        "realData": 378156
                     }, {
                         "monthDate": "2016-05",
-                        "predictData": 155075562,
-                        "realData": 169634051
+                        "predictData": 377858,
+                        "realData": 415946
                     }, {
                         "monthDate": "2016-06",
-                        "predictData": 178085872,
-                        "realData": 190283806
-                    }
-                ]
+                        "predictData": 460829,
+                        "realData": 460822
+                    }]
             }
             // 数据处理 拼接表格数据
             let month_data = getArr.month_data ;
@@ -446,11 +98,36 @@ class TopTable extends React.Component {
                 timeStr = yearMonth[0] + '年' + curMonth + '月';
                 timeSpace.push(timeStr);
             }
-            console.log(timeSpace);
+            let graphArrList = [];
+            // 获取graph 对象
+            getArr.day_data.map((item)=>{
+                graphArrList.push(this.creatLineGraph(item));
+                
+            })
+         
             this.setState({
                 data : month_data,
-                timeSpace : timeSpace
+                timeSpace : timeSpace,
+                graphArrList: graphArrList
             })
+    }
+    // 生成折线图对象
+    creatLineGraph(obj){
+        // 获取年与月
+        let yearMonth = obj.curMonth.split('-');
+        let timeLineArr = [];
+        for(let i = 0; i < obj.predictDataArr.length;i++){
+            timeLineArr.push(++i);
+        }
+        let graphObj = {
+            title: `${yearMonth[0]}年${yearMonth[1]}月用电量`,
+            key: obj.curMonth,
+            realBar: obj.realDataArr,
+            predictBar: obj.predictDataArr ,
+            timeLine: timeLineArr,
+            type: 'line'
+        }
+        return graphObj
     }
     componentWillMount(){
         this.getArrData()
@@ -459,10 +136,8 @@ class TopTable extends React.Component {
         let tempObj = this.state.timeSpace,
         strNum = parseInt(str),
         endNum = parseInt(end);
-        console.log(strNum - endNum)
         if(strNum - endNum > 0){
             // let spliceArr = tempObj.splice(str, end);
-            // console.log(spliceArr);
             // this.setState({
             //     data: spliceArr
             // })
@@ -475,7 +150,7 @@ class TopTable extends React.Component {
     render() {
         return (
             <div>
-                <div className='topHeader'>
+                <div className='topHeader' style={{background:'#fff'}}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <img className='topImg' src='../../../static/images/public/upImg.png'></img>
                         <span className='topRace'>用户排名</span>
@@ -485,7 +160,19 @@ class TopTable extends React.Component {
                     </div>
                 </div>
                 <Table columns={this.state.columns} dataSource={this.state.data} pagination={false}/>
+               <div className='analyzeContent' style={{height:'455px',marginTop:'20px'}}>
+                    {
+                            this.state.graphArrList.map((item, index) => {
+                                return (
+                                    <EchartBar key={index} content={item} />
+                                )
+                            })
+                        }
+
+                </div>
+               
             </div>
+            
 
         )
     }

@@ -17,7 +17,6 @@ class SelectTime extends React.Component {
         }
     }
     handleEndChange = (value) => {
-        console.log(`selected ${value}`);
         this.setState({
             endTimeIndex: value
         })

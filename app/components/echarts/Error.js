@@ -17,12 +17,8 @@ class ErrorUser extends Component {
         errObj = errObj.map(function (item,index) {
             item.electricityError =  (item.error/maxError) * 76+'%'
         });
-        console.log(errObj);
     }
     render() {
-        {
-            console.log(this.state.userErroMsg);
-        }
         return (
             <div className='errorContainer'>
 

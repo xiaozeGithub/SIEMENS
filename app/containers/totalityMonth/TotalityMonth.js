@@ -49,7 +49,6 @@ class Month extends React.Component {
             //     values.m_customer.filter(x => {
             //         if (x.error < 0) {
             //             x.error = -x.error;
-            //             console.log(x.error);
             //             return x;
             //         }
             //     });

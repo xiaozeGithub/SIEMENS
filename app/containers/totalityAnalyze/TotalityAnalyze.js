@@ -27,7 +27,10 @@ class Analyze extends React.Component {
         super(props, context)
         this.state = {
             errOrderby: [],
-            compareObj: {}
+            compareObj: {},
+            everyday:{
+            },
+            weekData:{}
         }
     }
     componentWillMount() {
@@ -51,7 +54,6 @@ class Analyze extends React.Component {
             //     // this.setState({
             //     //     errOrderby: newArr
             //     // })
-            // }).catch(e => console.log("Oops, error", e));
             let getObj = {
                 "c_state": "normal",
                 "m_customer": [{
@@ -75,7 +77,7 @@ class Analyze extends React.Component {
                 "predict_ten_day": 40743102,
                 "predict_thirty_day": 121261690,
                 "predict_twenty_day": 81654034,
-                "predict_week_data": [11890244, 28852858, 28807536, 27309852, 24401200],
+                "predict_week_data": [11890244, 28852858, 28807536, 27309852],
                 "real_day_data": [2897956, 3964078, 4740555, 4918931, 4880687, 4862623, 4531747, 4132565, 4551756, 4124876, 3516402, 3956424, 4382378, 3636170, 3880520],
                 "real_week_data": [11602589, 32003185, 19371894],
                 "today_data": 3880520,
@@ -99,8 +101,24 @@ class Analyze extends React.Component {
                     predict_thirty_day: getObj.predict_thirty_day,
                     predict_month_data: getObj.predict_month_data,
                     used_data: getObj.used_data,
-                    today_data: getObj.today_data
-                }
+                    today_data: getObj.today_data,
+                },
+                everyday:{
+                    title: '单体用户日用电量',
+                    key:'day',
+                    realBar: getObj.predict_day_data,
+                    predictBar: getObj.real_day_data ,
+                    timeLine: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'],
+                    type: 'bar'
+                 },
+                 weekData:{
+                     title: '单体用户周用电量',
+                     key:'week',
+                     realBar: getObj.real_week_data,
+                     predictBar: getObj.predict_week_data ,
+                     timeLine: ['1', '2', '3', '4'],
+                     type: 'bar'
+                 }
             })
         }
 
@@ -121,7 +139,8 @@ class Analyze extends React.Component {
                         </Col>
                     </Row>
                     <div className='analyzeContent'>
-                        <EchartBar />
+                        <EchartBar content={this.state.everyday} />
+                        <EchartBar content={this.state.weekData} />
 
                     </div>
                 </div>

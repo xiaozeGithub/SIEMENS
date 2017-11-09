@@ -13,7 +13,6 @@ class SETabs extends React.Component {
         }
     }
     tabBarChange = (item)=>{
-        console.log(item.content)
         this.setState({
             curTabs:item.index,
             curContent: item.content

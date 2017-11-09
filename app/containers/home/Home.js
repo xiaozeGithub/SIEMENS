@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 import '../../static/css/home.css'
-
-import { Layout, Menu, Icon, Row, Col, Input  } from 'antd'
+// import { hashHistory } from 'react-router'
+import { Layout, Menu, Icon, Row, Col, Input, Dropdown } from 'antd'
 import Config from '../../../config/config'
 
 const Search = Input.Search;
@@ -12,28 +12,26 @@ const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
 const { Header, Content, Footer, Sider } = Layout
 
+
 class Home extends React.Component {
     constructor(props, context) {
         super(props, context)
         // this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
             customerAllList: [],
-            customerFavList: []
+            customerFavList: [],
+
+
+
         }
     }
-    componentWillMount(){
-            // let _url = 'http://192.168.0.106:8080/siemenspre_war_exploded/common/getCuslist?userId=1&favourite=no'
-         // fetch(_url, {
-            //     method: 'GET'
-            // }).then(response => response.json()).then(values => {
-            //     //    重新排序
-            //     values.m_customer.filter(x => {
-            //         if (x.error < 0) {
-            //             x.error = -x.error;
-            //             console.log(x.error);
-            //             return x;
-            //         }
-            //     });
+    static contextTypes = { router: React.PropTypes.object };
+    componentWillMount() {
+        // let _url = 'http://192.168.0.106:8080/siemenspre_war_exploded/common/getCuslist?userId=1&favourite=no'
+        // fetch(_url, {
+        //     method: 'GET'
+        // }).then(response => response.json()).then(values => {
+        //     });
         let customerAllList = [{
             "cId": 1016529,
             "customerName": "user1016529",
@@ -71,7 +69,7 @@ class Home extends React.Component {
             "customerName": "user1029414",
             "favourite": "yes"
         }];
-        
+
         this.setState({
             customerAllListVTemp: customerAllList,
             customerAllList: customerAllList
@@ -84,37 +82,48 @@ class Home extends React.Component {
         });
     }
 
-    changeFavHeartSatus(e,index){
+    changeFavHeartSatus(e, index) {
         e.stopPropagation();
-        let curFavStatus = this.state.customerAllList[index].favourite === 'yes'?'no':'yes';
-                 // fetch(_url, {
-            //     method: 'GET'
-            // }).then(response => response.json()).then(values => {
-            //     //    重新排序
-            //     values.m_customer.filter(x => {
-            //         if (x.error < 0) {
-            //             x.error = -x.error;
-            //             console.log(x.error);
-            //             return x;
-            //         }
-            //     });
+        let curFavStatus = this.state.customerAllList[index].favourite === 'yes' ? 'no' : 'yes';
+        // fetch(_url, {
+        //     method: 'GET'
+        // }).then(response => response.json()).then(values => {
+        //     //    重新排序
+        //     values.m_customer.filter(x => {
+        //         if (x.error < 0) {
+        //             x.error = -x.error;
+        //             (x.error);
+        //             return x;
+        //         }
+        //     });
         this.state.customerAllList[index].favourite = curFavStatus;
         this.setState({
-            customerAllList : this.state.customerAllList
+            customerAllList: this.state.customerAllList
         })
-        
+
     }
-    SearchCustomer(values){
-        console.log(values);
-        let searchCusArr = this.state.customerAllListVTemp.filter(x =>  x['customerName'].indexOf(values)!==-1);
-        console.log(searchCusArr);
+    SearchCustomer(values) {
+        let searchCusArr = this.state.customerAllListVTemp.filter(x => x['customerName'].indexOf(values) !== -1);
         this.setState({
-            customerAllList : searchCusArr
+            customerAllList: searchCusArr
         })
 
     }
-
+    cansolApp() {
+        console.log('goodBye');
+        // let _url = 'http://192.168.0.106:8080/siemenspre_war_exploded/common/getCuslist?userId=1&favourite=no'
+        // fetch(_url, {
+        //     method: 'GET'
+        // }).then(response => response.json()).then(values => {
+        //     });
+        this.context.router.push('/');
+    }
     render() {
+        const menu = <Menu>
+            <Menu.Item >
+                <div onClick={() => { this.cansolApp() }}> 退 出</div>
+            </Menu.Item>
+        </Menu>
         return (
             <Layout className="layout" style={{ height: '100%', background: this.context.color }}>
                 <Header className="header">
@@ -122,15 +131,17 @@ class Home extends React.Component {
                     <div className='headerSetting'>
                         <div>{Config.login.title}</div>
                         <div>
-                           <Icon style={{ fontSize: 24, color: '#999' }} type="android" />
-                           <span>Administriter</span>
-                           <Icon style={{ fontSize: 14, color: '#999' }} type="down" />
+                            <Icon style={{ fontSize: 24, color: '#999' }} type="android" />
+
+                            <Dropdown overlay={menu}>
+                                <span style={{ couser: 'pointer' }}>Administriter <Icon type="down" /></span>
+                            </Dropdown>
                         </div>
                     </div>
                 </Header>
 
                 <Layout>
-                
+
                     <Sider
                         breakpoint="lg"
                         collapsedWidth="0"
@@ -140,7 +151,7 @@ class Home extends React.Component {
                     >
                         <Search
                             placeholder="input search text"
-                            style={{ width: 160,marginLeft:'20px',marginTop:'15px',color:'#ffffff'  }}
+                            style={{ width: 160, marginLeft: '20px', marginTop: '15px', color: '#ffffff' }}
                             onSearch={value => this.SearchCustomer(value)}
                         />
                         <Menu
@@ -149,27 +160,27 @@ class Home extends React.Component {
                             defaultOpenKeys={['sub1']}
                             style={{ height: '100%', borderRight: 0 }}
                         >
-                          
+
                             <Menu.Item key="sub1" ><Link style={{ display: 'block' }} to='/home'></Link><span><Icon type="user" />总体用电</span></Menu.Item>
-                            <SubMenu  title={<span><Icon type="laptop" />我关注的用户</span>}>
+                            <SubMenu title={<span><Icon type="laptop" />我关注的用户</span>}>
                                 {
-                                    this.state.customerAllList.map((item,index) => {
-                                        if(item.favourite === 'yes'){
+                                    this.state.customerAllList.map((item, index) => {
+                                        if (item.favourite === 'yes') {
                                             return (
-                                                <Menu.Item key= {item.cId}>{item.customerName} &nbsp;<Icon type="heart" onClick={(e)=>{this.changeFavHeartSatus(e,index)}} style={{ fontSize: 16, color: '#f07655' }} /></Menu.Item>
-                                            ) 
+                                                <Menu.Item key={item.cId}>{item.customerName} &nbsp;<Icon type="heart" onClick={(e) => { this.changeFavHeartSatus(e, index) }} style={{ fontSize: 16, color: '#f07655' }} /></Menu.Item>
+                                            )
                                         }
-                                      
+
                                     })
                                 }
                             </SubMenu>
                             <SubMenu key="sub3" title={<span><Icon type="notification" />所有用户</span>}>
                                 {/*<Menu.Item key="9"><Link style={{ display: 'block' }} to='/home/individual'></Link>用户1</Menu.Item>*/}
                                 {
-                                    this.state.customerAllList.map( (item, index) => {
-                                        let iconStatus = item.favourite == 'yes'?<Icon onClick={(e)=>{this.changeFavHeartSatus(e,index)}}  type="heart" style={{ fontSize: 16, color: '#f07655' }} />:<Icon onClick={(e)=>{this.changeFavHeartSatus(e,index)}}  type="heart-o" style={{ fontSize: 16, color: '#f07655' }} />;
+                                    this.state.customerAllList.map((item, index) => {
+                                        let iconStatus = item.favourite == 'yes' ? <Icon onClick={(e) => { this.changeFavHeartSatus(e, index) }} type="heart" style={{ fontSize: 16, color: '#f07655' }} /> : <Icon onClick={(e) => { this.changeFavHeartSatus(e, index) }} type="heart-o" style={{ fontSize: 16, color: '#f07655' }} />;
                                         return (
-                                            <Menu.Item key= {item.cId}>{item.customerName} &nbsp;{iconStatus} </Menu.Item>
+                                            <Menu.Item key={item.cId}>{item.customerName} &nbsp;{iconStatus} </Menu.Item>
                                         )
                                     })
                                 }
@@ -177,13 +188,13 @@ class Home extends React.Component {
                         </Menu>
                     </Sider>
                     <Layout>
-                        <Content style={{ padding: '8px 20px', overflow: 'auto',height: '100%'}}>
+                        <Content style={{ padding: '8px 20px', overflow: 'auto', height: '100%' }}>
                             {this.props.children}
                         </Content>
                         <Footer className='footerSetting'>
-                            <div style={{ margin: '5px 0' ,couser: 'pointer'}}>帮助中心 丨 关于西门子 丨 联系我们 丨 问题反馈</div>
+                            <div style={{ margin: '5px 0', couser: 'pointer' }}>帮助中心 丨 关于西门子 丨 联系我们 丨 问题反馈</div>
                             <span>版权所有 ： 德国西门子股份有限公司 ©2017</span>
-			             </Footer>
+                        </Footer>
                     </Layout>
                 </Layout>
             </Layout>

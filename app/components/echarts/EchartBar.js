@@ -56,8 +56,9 @@ class EchartsBar extends Component {
                     
                     {
                         name: '实际用电量',
+                        barWidth: this.props.content.barWith||'30%',
                         type: this.props.content.type,
-                        data: this.props.content.predictBar,
+                        data: this.props.content.realBar,
                         markPoint: {
                             data: [
                                 { type: 'max', name: '最大值' },
@@ -69,8 +70,9 @@ class EchartsBar extends Component {
                   
                     {
                         name: '预测用电量',
+                        barWidth: this.props.content.barWith||'30%',
                         type: this.props.content.type,
-                        data: this.props.content.realBar,
+                        data: this.props.content.predictBar,
                         markPoint: {
                             data: [
                                 { type: 'max', name: '最大值' },

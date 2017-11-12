@@ -10,8 +10,13 @@ class ErrorUser extends Component {
             userErroMsg: this.props.content
         }
     }
-    componentWillMount() {
+    componentDidUpdate() {
+     
         let errObj = this.state.userErroMsg;
+        if(errObj<=0){
+            
+                    }
+        console.log(errObj);
         let maxError = errObj[0].error;
 
         errObj = errObj.map(function (item,index) {
@@ -42,7 +47,7 @@ class ErrorUser extends Component {
                                 </Col>
                                 <Col className='errorColStyle' span={18}>
                                     <div className='errorContentShow' style={{ width: item.electricityError}}></div>
-                                    <div className='errorContentNumShow'>{item.error+'°'}</div>
+                                    <div className='errorContentNumShow'>{item.error+'kwh'}</div>
                                 </Col>
                             </Row>
                         )

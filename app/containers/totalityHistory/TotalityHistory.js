@@ -20,7 +20,7 @@ class History extends React.Component {
 
     render() {
         return (
-            <div className='toptenContainer'>
+            <div className='toptenContainer' style={{overflow:'scroll'}}>
                 <HisTable/>
             </div>
         )

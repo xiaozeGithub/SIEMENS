@@ -27,54 +27,17 @@ class Home extends React.Component {
     }
     static contextTypes = { router: React.PropTypes.object };
     componentWillMount() {
-        // let _url = 'http://192.168.0.106:8080/siemenspre_war_exploded/common/getCuslist?userId=1&favourite=no'
-        // fetch(_url, {
-        //     method: 'GET'
-        // }).then(response => response.json()).then(values => {
-        //     });
-        let customerAllList = [{
-            "cId": 1016529,
-            "customerName": "user1016529",
-            "favourite": "no"
-        }, {
-            "cId": 1028802,
-            "customerName": "user1028802",
-            "favourite": "no"
-        }, {
-            "cId": 1029010,
-            "customerName": "user1029010",
-            "favourite": "yes"
-        }, {
-            "cId": 1029051,
-            "customerName": "user1029051",
-            "favourite": "yes"
-        }, {
-            "cId": 1029073,
-            "customerName": "user1029037",
-            "favourite": "yes"
-        }, {
-            "cId": 1029164,
-            "customerName": "user1029164",
-            "favourite": "yes"
-        }, {
-            "cId": 1029351,
-            "customerName": "user1029351",
-            "favourite": "yes"
-        }, {
-            "cId": 1029356,
-            "customerName": "user1029356",
-            "favourite": "yes"
-        }, {
-            "cId": 1029414,
-            "customerName": "user1029414",
-            "favourite": "yes"
-        }];
-
-        this.setState({
-            customerAllListVTemp: customerAllList,
-            customerAllList: customerAllList
+        const userId = this.props.params.userId
+        let _url = `http://192.168.0.103:8080/siemenspre_war_exploded/common/getCuslist?userId=${userId}&favourite=no`
+        fetch(_url, {
+            method: 'GET'
+        }).then(response => response.json()).then(values => {
+            let customerAllList = values;
+            this.setState({
+                customerAllListVTemp: customerAllList,
+                customerAllList: customerAllList
+            });
         });
-
     }
     toggleCollapsed = () => {
         this.setState({
@@ -84,7 +47,22 @@ class Home extends React.Component {
 
     changeFavHeartSatus(e, index) {
         e.stopPropagation();
-        let curFavStatus = this.state.customerAllList[index].favourite === 'yes' ? 'no' : 'yes';
+        let curList = this.state.customerAllList;
+        const curFavStatus = curList[index].favourite === 'yes' ? 'no' : 'yes';
+        const customerId = curList[index].cId;
+        let _url = `http://192.168.0.103:8080/siemenspre_war_exploded/common/updateCusFavourite?customerId=${customerId}&favourite=${curFavStatus}`
+        fetch(_url, {
+            method: 'GET'
+        }).then(response => response.json()).then(values => {
+            console.log(values);
+            if(values.IsSuccess){
+                this.setState({
+                    customerAllList : curList
+                });
+            }
+            // curList[index].favourite = curList[index].favourite === 'yes' ? 'no' : 'yes'
+        });
+      
         // fetch(_url, {
         //     method: 'GET'
         // }).then(response => response.json()).then(values => {
@@ -107,7 +85,6 @@ class Home extends React.Component {
         this.setState({
             customerAllList: searchCusArr
         })
-
     }
     cansolApp() {
         console.log('goodBye');
@@ -167,7 +144,7 @@ class Home extends React.Component {
                                     this.state.customerAllList.map((item, index) => {
                                         if (item.favourite === 'yes') {
                                             return (
-                                                <Menu.Item key={item.cId}>{item.customerName} &nbsp;<Icon type="heart" onClick={(e) => { this.changeFavHeartSatus(e, index) }} style={{ fontSize: 16, color: '#f07655' }} /></Menu.Item>
+                                                <Menu.Item key={item.cId}><Icon type="heart" onClick={(e) => { this.changeFavHeartSatus(e, index) }} style={{ fontSize: 16, color: '#f07655' }} /> &nbsp;{item.customerName}</Menu.Item>
                                             )
                                         }
 
@@ -180,7 +157,7 @@ class Home extends React.Component {
                                     this.state.customerAllList.map((item, index) => {
                                         let iconStatus = item.favourite == 'yes' ? <Icon onClick={(e) => { this.changeFavHeartSatus(e, index) }} type="heart" style={{ fontSize: 16, color: '#f07655' }} /> : <Icon onClick={(e) => { this.changeFavHeartSatus(e, index) }} type="heart-o" style={{ fontSize: 16, color: '#f07655' }} />;
                                         return (
-                                            <Menu.Item key={item.cId}>{item.customerName} &nbsp;{iconStatus} </Menu.Item>
+                                            <Menu.Item key={item.cId}>{iconStatus}  &nbsp; {item.customerName}</Menu.Item>
                                         )
                                     })
                                 }

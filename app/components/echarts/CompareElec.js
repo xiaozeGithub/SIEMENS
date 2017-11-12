@@ -13,8 +13,8 @@ class CompareElec extends Component {
             compareObj:this.props.content
         }
     }
-    componentDidMount() {
-
+    componentDidUpdate() {
+        
     }
     render() {
         return (
@@ -51,9 +51,9 @@ class CompareElec extends Component {
                         </div>
                     </Col>
                     <Col style={compareGraphColR} span={5}>
-                        <div style={compareGraphColRContent} ><span style={{ color: '#d7d7d7' }}>本月预测电量</span> <span> {this.state.compareObj.predict_month_data}°</span></div>
-                        <div style={compareGraphColRContent}><span style={{ color: '#d7d7d7' }}>本月已用电量</span>  <span> {this.state.compareObj.used_data}°</span></div>
-                        <div style={compareGraphColRContent}><span style={{ color: '#d7d7d7' }}>今日用电量</span>  <span> {this.state.compareObj.today_data}°</span></div>
+                        <div style={compareGraphColRContent} ><span style={{ color: '#d7d7d7' }}>本月预测电量</span> <span> {this.state.compareObj.predict_month_data}kwh</span></div>
+                        <div style={compareGraphColRContent}><span style={{ color: '#d7d7d7' }}>本月已用电量</span>  <span> {this.state.compareObj.used_data}kwh</span></div>
+                        <div style={compareGraphColRContent}><span style={{ color: '#d7d7d7' }}>今日用电量</span>  <span> {this.state.compareObj.today_data}kwh</span></div>
                     </Col>
                 </Row>
             </div>

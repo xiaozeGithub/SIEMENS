@@ -24,8 +24,8 @@ export default class Routers extends Component {
                         console.log('离开了登录页 我们去首页');
                     }}>
                 </Route>
-                <Route path='/home' component={Home}>
-                    <IndexRoute component={Totaily} >
+                <Route path='/home/:userId' component={Home}>
+                    <IndexRoute  component={Totaily} >
                  
                     </IndexRoute>
                     <Route path='individual' component={Individual}/>

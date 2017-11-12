@@ -11,7 +11,7 @@ class NormalLoginForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                const _url = 'http://192.168.0.106:8080/siemenspre_war_exploded/auth/login'
+                const _url = 'http://192.168.0.103:8080/siemenspre_war_exploded/auth/login'
                 fetch(_url, {
                     method: 'post',
                     headers: {
@@ -19,12 +19,12 @@ class NormalLoginForm extends React.Component {
                     },
                     body: `userName=${values.userName}&password=${values.password}`
                 }).then(response => response.json())
-                    .then(values => {
-                        if (values.isSuccess) {
-                            this.context.router.push('/home');
-                        }
-                    })
-                    .catch(e => console.log("Oops, error", e));
+                .then(values => {
+                    if (values.isSuccess) {
+                        this.context.router.push(`/home/${values.userId}`);
+                    }
+                })
+                .catch(e => console.log("Oops, error", e));
 
             }
         });

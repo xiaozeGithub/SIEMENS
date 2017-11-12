@@ -42,11 +42,12 @@ class TopTable extends React.Component {
     }
 
     getArrData(){
-          // const _url = 'http://192.168.0.106:8080/siemenspre_war_exploded/edata/getRealtimeAll?userId=1';
-            // fetch(_url, {
-            //     method: 'GET'
-            // }).then(response => response.json()).then(values => {
-            //     });
+             const _url = `http://192.168.0.103:8080/siemenspre_war_exploded/edata/getHistory?id=1&flag=userId&startDate=none&endDate=none`;
+            fetch(_url, {
+                method: 'GET'
+            }).then(response => response.json()).then(values => {
+                console.log(values);
+            });
             const getArr = {
                 "available_month": ["2016-01", "2016-06"],
                 
@@ -160,16 +161,18 @@ class TopTable extends React.Component {
                     </div>
                 </div>
                 <Table columns={this.state.columns} dataSource={this.state.data} pagination={false}/>
-               <div className='analyzeContent' style={{height:'455px',marginTop:'20px'}}>
+               
                     {
                             this.state.graphArrList.map((item, index) => {
                                 return (
-                                    <EchartBar key={index} content={item} />
+                                    <div key={index}  className='analyzeContent' style={{height:'455px',marginTop:'20px'}}>
+                                        <EchartBar  content={item} />
+                                    </div>
                                 )
                             })
                         }
 
-                </div>
+             
                
             </div>
             

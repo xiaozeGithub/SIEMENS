@@ -57,7 +57,7 @@ class EchartsBar extends Component {
                     {
                         name: '实际用电量',
                         barWidth: this.props.content.barWith||'30%',
-                        type: this.props.content.type,
+                        type: this.props.content.type ,
                         data: this.props.content.realBar,
                         markPoint: {
                             data: [
@@ -71,7 +71,7 @@ class EchartsBar extends Component {
                     {
                         name: '预测用电量',
                         barWidth: this.props.content.barWith||'30%',
-                        type: this.props.content.type,
+                        type: this.props.content.type ,
                         data: this.props.content.predictBar,
                         markPoint: {
                             data: [
@@ -88,6 +88,83 @@ class EchartsBar extends Component {
                 ]
             }
         }
+    }
+    static defaultProps = {
+        content:{}
+    }
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            data: {
+                title: {
+                    text: nextProps.content.title,
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['实际用电量', '预测用电量'],
+                    x: 'right'
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        // dataView: { show: true, readOnly: false },
+                        // magicType: { show: true, type: ['line', 'bar'] },
+                        // restore: { show: true },
+                        saveAsImage: { show: true }
+                    },
+                    x: 'left'
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: nextProps.content.timeLine
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        data: ['50', '100', '150', '200']
+                    }
+                ],
+                series: [
+                    
+                    {
+                        name: '实际用电量',
+                        barWidth: nextProps.content.barWith||'30%',
+                        type: nextProps.content.type ,
+                        data: nextProps.content.realBar,
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: '最大值' },
+                                { type: 'min', name: '最小值' }
+                            ]
+                        }
+                        
+                    },
+                  
+                    {
+                        name: '预测用电量',
+                        barWidth: nextProps.content.barWith||'30%',
+                        type: nextProps.content.type ,
+                        data: nextProps.content.predictBar,
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: '最大值' },
+                                { type: 'min', name: '最小值' }
+                            ]
+                        }
+                        // markLine: {
+                        //     data: [
+                        //         { type: 'average', name: '平均值' }
+                        //     ]
+                        // }
+                    }
+                ]
+            }
+        });
     }
     componentDidMount() {
         // 基于准备好的dom，初始化echarts实例

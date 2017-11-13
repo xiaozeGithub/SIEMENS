@@ -25,7 +25,7 @@ class Month extends React.Component {
             secondLine:[]
         }
     }
-    componentWillMount() {
+    componentDidMount() {
         let that = this;
         const _url = 'http://192.168.0.103:8080/siemenspre_war_exploded/edata/getPredict?userId=1';
         fetch(_url, {

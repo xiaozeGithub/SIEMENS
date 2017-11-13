@@ -13,7 +13,15 @@ class CompareElec extends Component {
             compareObj:this.props.content
         }
     }
-    componentDidUpdate() {
+    static defaultProps = {
+        content:{}
+    }
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            compareObj: nextProps.content
+        });
+    }
+    componentDidMount() {
         
     }
     render() {
@@ -34,13 +42,13 @@ class CompareElec extends Component {
                     <Col style={compareGraphCol} span={19}>
                         <div className="eleCompare">
                             <div className="top">
-                                <span>{this.state.compareObj.predict_ten_day}°</span>
-                                <span>{this.state.compareObj.predict_twenty_day}°</span>
-                                <span>{this.state.compareObj.predict_thirty_day}°</span>
+                                <span>{this.state.compareObj.predict_ten_day}kwh</span>
+                                <span>{this.state.compareObj.predict_twenty_day}kwh</span>
+                                <span>{this.state.compareObj.predict_thirty_day}kwh</span>
                             </div>
                             <div className="mid">
                                 <span className="one">
-                                    <span className="two">188°</span>
+                                    <span className="two">{this.state.compareObj.lack_data}°</span>
                                 </span>
                             </div>
                             <div className="bottom">

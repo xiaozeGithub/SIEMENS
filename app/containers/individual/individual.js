@@ -6,8 +6,9 @@ import { Row, Col } from 'antd';
 
 //引入tabs组件 
 import SIETabs from '../../components/tabs/Tabs';
+import History from '../totalityHistory/TotalityHistory';
 // 用电监测与分析
-import Analyze from '../totalityAnalyze/totalityAnalyze';
+import Analyze from '../singleAnalyze/singleAnalyze';
 class Individual extends React.Component {
     constructor(props, context) {
         super(props, context)
@@ -17,13 +18,13 @@ class Individual extends React.Component {
                     title: '实时用电监测与分析',
                     index: '1',
                     url: '',
-                    content:<Analyze/>
+                    content: <Analyze/>
                 },
                 {
                     title: '历史用电',
                     index: '3',
                     url: '',
-                    content:'历史用电'
+                    content: <History/>
                 }
             ]
         }

@@ -54,106 +54,75 @@ class TopTable extends React.Component {
         }
     }
 
-    getTopData(userid = 'userId' , flag, page ,limited=10) {
-        // const _url = 'http://192.168.0.106:8080/siemenspre_war_exploded/edata/getRealtimeAll?userId=1';
-        // fetch(_url, {
-        //     method: 'GET'
-        // }).then(response => response.json()).then(values => {
-        //     });
-        const topTenArr = {
-            "current_page": 2,
-            "page_amount": 1,
-            "userInfor": [
-                {
-                    "customerName": "user1029356",
-                    "error": 1,
-                    "position": "Beijing",
-                    "realData": 567909554
-                }, {
-                    "customerName": "user1029351",
-                    "error": 1,
-                    "position": "Beijing",
-                    "realData": 546260009
-                }, {
-                    "customerName": "user1029414",
-                    "error": 11,
-                    "position": "Beijing",
-                    "realData": 133497986
-                }, {
-                    "customerName": "user1028802",
-                    "error": 0,
-                    "position": "Beijing",
-                    "realData": 131330754
-                }, {
-                    "customerName": "user1029010",
-                    "error": 0,
-                    "position": "Beijing",
-                    "realData": 117058710
-                }, {
-                    "customerName": "user1028978",
-                    "error": 0,
-                    "position": "Beijing",
-                    "realData": 101286417
-                }, {
-                    "customerName": "uaser1029037",
-                    "error": 1,
-                    "position": "Beijing",
-                    "realData": 97382457
-                }, {
-                    "customerName": "user1029051",
-                    "error": 8,
-                    "position": "Beijing",
-                    "realData": 90444372
-                }, {
-                    "customerName": "user1029107",
-                    "error": -2,
-                    "position": "Beijing",
-                    "realData": 23962889
-                }, {
-                    "customerName": "uaser1029164",
-                    "error": -48,
-                    "position": "Beijing",
-                    "realData": 18645486
+    getTopData(url,callback) {
+        const _url = url||`http://192.168.0.103:8080/siemenspre_war_exploded/edata/getCustomerRank?userid=1&flag=amount&page=1&limited=10&query=no_content`;
+        fetch(_url, {
+            method: 'GET'
+        }).then(response => response.json()).then(values => {
+            console.log(values);
+            const topTenArr = values;
+            const total = topTenArr.page_amount * 10;
+            topTenArr.userInfor.map((item) => {
+                item.error += '%';
+                item.key = item.customerName
+            })
+            this.setState({
+                dataArr: topTenArr.userInfor,
+                pagination:{
+                    total,
+                    current: topTenArr.current_page
                 }
-            ]
-        }
-        const total = topTenArr.page_amount * 10;
-        topTenArr.userInfor.map((item) => {
-            item.error += '%';
-            item.key = item.customerName
-        })
-        this.setState({
-            dataArr: topTenArr.userInfor,
-            pagination:{
-                total,
-                current: topTenArr.current_page
+            })
+            if(callback){
+                callback();
             }
-        })
+                       
+        });
+       
     }
-    componentWillMount() {
+    componentDidMount() {
         this.getTopData();
     }
     handleTableChange = (pagination, filters, sorter) => {
-        const pager = { ...this.state.pagination };
+        const pager = { ...pagination };
+        console.log({...filters});
+        let searchContent; 
+        if(this.state.searchContent){
+            searchContent = this.state.searchContent
+        }else{
+            searchContent = 'no_content'
+        }
+        const _url = `http://192.168.0.103:8080/siemenspre_war_exploded/edata/getCustomerRank?userid=1&flag=${this.state.flag}&page=${pager.current}&limited=10&query=${searchContent}`;
         // pager.current = pagination.current;
-        this.getTopData('userId', e.target.value, pagination.current, 10);
+        console.log(_url);
+        this.getTopData(_url);
       }
-    searchKeyWord(word) {
-        let keyWord = word.toUpperCase();
-        let filterName = this.data.filter((item) => {
-            return item['user'].toUpperCase().indexOf(keyWord) !== -1
-        });
+      searchKeyWord(value) {
+          console.log(value)
+        const _url = `http://192.168.0.103:8080/siemenspre_war_exploded/edata/getCustomerRank?userid=1&flag=${this.state.flag}&page=${this.state.pagination.current}&limited=10&query=${value}`
+        this.getTopData(_url);
         this.setState({
-            data: filterName
+            data:value
         })
     }
     handleSizeChange = (e) => {
-        // this.setState({ flag: e.target.value });
         let curentPages = this.state.pagination.current;
-        if(e.target.value !== 'bad'){
+
+        let searchContent; 
+        if(this.state.searchContent){
+            searchContent = this.state.searchContent
+        }else{
+            searchContent = 'no_content'
+        }
+        if(e.target.value !== ''){
             curentPages = 1;
         }
-        this.getTopData('userId', e.target.value, curentPages, 10);
+        const _url = `http://192.168.0.103:8080/siemenspre_war_exploded/edata/getCustomerRank?userid=1&flag=${e.target.value}&page=${curentPages}&limited=10&query=${searchContent}`;
+        this.getTopData(_url,()=> {
+            this.setState({ flag: e.target.value });
+        });
+        
+
     }
     render() {
         return (
@@ -175,10 +144,11 @@ class TopTable extends React.Component {
                             placeholder="input search text"
                             style={{ width: 160, marginLeft: '15px' }}
                             onSearch={value => this.searchKeyWord(value)}
+                            
                         />
                     </div>
                 </div>
-                <Table columns={this.state.columns} dataSource={this.state.dataArr} onChange={this.handleTableChange} pagination={this.state.pagination} />
+                <Table columns={this.state.columns} filters={this.state.searchContent} dataSource={this.state.dataArr} onChange={this.handleTableChange} pagination={this.state.pagination} />
             </div>
 
         )

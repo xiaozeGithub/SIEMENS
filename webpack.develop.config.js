@@ -8,12 +8,9 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js'
     },
-    // devServer: {
-    //     historyApiFallback: true,
-    //     noInfo: true,
-    //     port: Config.app_port,//访问端口
-    //     colors:true
-    // },
+    devServer: {
+        port: 3000,//访问端口
+    },
 	// eslint: {
 	// 	configFile:'.eslintrc.js'
 	// },

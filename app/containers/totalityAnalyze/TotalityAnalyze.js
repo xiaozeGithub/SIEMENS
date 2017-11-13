@@ -33,17 +33,23 @@ class Analyze extends React.Component {
             weekData:{}
         }
     }
-    componentDidUpdate () {
+    componentWillMount () {
             let that = this;
             const _url = 'http://192.168.0.103:8080/siemenspre_war_exploded/edata/getRealtimeAll?userId=1';
             fetch(_url, {
                 method: 'GET'
             }).then(response => response.json()).then(values => {
+                console.log(values);
                 let getObj = values;
+               
                 let newArr = getObj.m_customer;
                 newArr.filter(x => {
                     if (x.error < 0) {
+                        x.status = 1
                         x.error = -x.error;
+                        return x;
+                    }else{
+                        x.status = 0
                         return x;
                     }
                 });
@@ -59,6 +65,7 @@ class Analyze extends React.Component {
                         predict_month_data: getObj.predict_month_data,
                         used_data: getObj.used_data,
                         today_data: getObj.today_data,
+                        lack_data:getObj.lack_data
                     },
                     everyday:{
                         title: '单体用户日用电量',

@@ -10,8 +10,23 @@ class ErrorUser extends Component {
             userErroMsg: this.props.content
         }
     }
-    componentDidUpdate() {
-     
+    static defaultProps = {
+        content:[]
+    }
+    componentWillReceiveProps(nextProps){
+        let maxError = nextProps.content[0].error;
+        nextProps.content.map(function (item,index) {
+            item.electricityError =  (item.error/maxError) * 76+'%'
+        });
+        console.log(nextProps.content);        
+        this.setState({
+            userErroMsg: nextProps.content
+        });
+    }
+    componentDidMount() {
+        if(this.state.userErroMsg.length<=0){
+            return
+        }
         let errObj = this.state.userErroMsg;
         if(errObj<=0){
             
@@ -47,7 +62,7 @@ class ErrorUser extends Component {
                                 </Col>
                                 <Col className='errorColStyle' span={18}>
                                     <div className='errorContentShow' style={{ width: item.electricityError}}></div>
-                                    <div className='errorContentNumShow'>{item.error+'kwh'}</div>
+                                    <div className='errorContentNumShow'>{item.status?'-':''}{item.error+'%'}</div>
                                 </Col>
                             </Row>
                         )

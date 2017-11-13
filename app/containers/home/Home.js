@@ -20,13 +20,11 @@ class Home extends React.Component {
         this.state = {
             customerAllList: [],
             customerFavList: [],
-
-
-
         }
     }
     static contextTypes = { router: React.PropTypes.object };
-    componentWillMount() {
+    
+    componentDidMount() {
         const userId = this.props.params.userId
         let _url = `http://192.168.0.103:8080/siemenspre_war_exploded/common/getCuslist?userId=${userId}&favourite=no`
         fetch(_url, {

@@ -11,10 +11,20 @@ class SelectTime extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            startTimeList: this.props.timeSelect,
+            startTimeList: this.props.timeSpace,
             startTimeIndex: '0',
             endTimeIndex: '0'
         }
+    }
+    static defaultProps = {
+        timeSpace:[
+            '2016年4月'
+        ]
+    }
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            startTimeList: nextProps.timeSpace
+        });
     }
     handleEndChange = (value) => {
         this.setState({
@@ -31,8 +41,9 @@ class SelectTime extends React.Component {
     }
     
     render() {
+        console.log(this.state.startTimeList)
         return (
-            <Row gutter={8} style={{width:'100%'}}>
+            <Row guter={8} style={{width:'100%'}}>
                 <Col span={8}>
                     <Select defaultValue={this.state.startTimeList[0]} style={{ width: '100%' }} onChange={this.handleStartChange}>
                         {
@@ -44,7 +55,7 @@ class SelectTime extends React.Component {
                         }
                     </Select>
                 </Col>
-                <Col span={2}>
+                <Col span={1}>
                     <div className='selectTimeTo' >——</div>
                 </Col>
                 <Col span={8}>
@@ -58,6 +69,9 @@ class SelectTime extends React.Component {
                     }
                     </Select>
                 </Col>
+                <Col span={1}>
+               
+            </Col>
                 <Col span={6}>
                      <div onClick={(str, end) => this.searchTime(this.state.startTimeIndex, this.state.endTimeIndex)} className='selectTimeBtn' >查询</div>
                 </Col>
